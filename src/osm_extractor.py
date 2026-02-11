@@ -36,17 +36,18 @@ class OSMExtractor:
         """
         logger.info(f"Downloading OSM road network for {self.name}")
 
-        # Define bounding box
-        north = self.bounds["max_lat"]
-        south = self.bounds["min_lat"]
-        east = self.bounds["max_lon"]
-        west = self.bounds["min_lon"]
+        # Define bounding box as (west, south, east, north)
+        bbox = (
+            self.bounds["min_lon"],  # west
+            self.bounds["min_lat"],  # south
+            self.bounds["max_lon"],  # east
+            self.bounds["max_lat"]    # north
+        )
 
         # Download drive network
         self.graph = ox.graph_from_bbox(
-            north, south, east, west,
-            network_type="drive",
-            simplify=True
+            bbox,
+            network_type="drive"
         )
 
         logger.info(f"Downloaded {len(self.graph.nodes)} nodes, {len(self.graph.edges)} edges")

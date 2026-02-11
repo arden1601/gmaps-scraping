@@ -3,6 +3,7 @@
 import asyncio
 import random
 import json
+import re
 import time
 from typing import Dict, Optional, List
 from datetime import datetime
@@ -40,9 +41,10 @@ class GMapsScraper:
         self.context: Optional[BrowserContext] = None
         self.page: Optional[Page] = None
         self.requests_count = 0
+        self._captured_api_data = None  # For network interception
 
     async def start_browser(self):
-        """Initialize browser with anti-detection measures"""
+        """Initialize browser with anti-detection measures and network interception"""
         self.playwright = await async_playwright().start()
 
         browser_args = {
@@ -76,7 +78,35 @@ class GMapsScraper:
         """)
 
         self.page = await self.context.new_page()
-        logger.info("Browser initialized")
+
+        # NEW: Add response interception for Google Maps API
+        self._captured_api_data = None
+
+        async def handle_response(response):
+            """Capture responses from Google Maps Directions API"""
+            # Google Maps uses several endpoint patterns for directions
+            url = response.url
+            if any(pattern in url for pattern in [
+                '/maps/api/directions/json',
+                '/maps/dir/',
+                '/maps/rbt',
+                '/maps/vt'
+            ]):
+                try:
+                    if response.status == 200:
+                        # Try to parse JSON response
+                        content_type = response.headers.get('content-type', '')
+                        if 'application/json' in content_type:
+                            body = await response.text()
+                            data = json.loads(body)
+                            self._captured_api_data = data
+                            logger.debug(f"Captured API response from {url[:100]}...")
+                except Exception as e:
+                    logger.debug(f"Could not capture response: {e}")
+
+        self.page.on('response', handle_response)
+
+        logger.info("Browser initialized with network interception")
 
     async def stop_browser(self):
         """Close browser and cleanup"""
@@ -124,6 +154,9 @@ class GMapsScraper:
         origin_str = f"{origin[0]},{origin[1]}"
         dest_str = f"{destination[0]},{destination[1]}"
 
+        # Reset captured data
+        self._captured_api_data = None
+
         # Build URL with departure time if provided
         url = f"https://www.google.com/maps/dir/{origin_str}/{dest_str}"
         if departure_time:
@@ -133,10 +166,14 @@ class GMapsScraper:
         logger.debug(f"Navigating to: {url}")
 
         try:
-            await self.page.goto(url, wait_until="networkidle", timeout=30000)
+            # Navigate with extended timeout for dynamic content
+            await self.page.goto(url, wait_until="domcontentloaded", timeout=45000)
 
-            # Wait for directions to load
-            await asyncio.sleep(3)
+            # Wait for route panel to appear (multiple indicators)
+            await self._wait_for_route_data()
+
+            # Additional wait for traffic data to load
+            await asyncio.sleep(2)
 
             # Try to extract data from page
             result = await self._extract_directions_data()
@@ -154,35 +191,264 @@ class GMapsScraper:
 
     async def _extract_directions_data(self) -> Optional[Dict]:
         """
-        Extract directions data from the page
+        Extract directions data from page using network interception
+        with JavaScript evaluation as fallback
 
         Returns:
             Dict with duration, distance, duration_in_traffic
         """
         try:
-            # Look for duration elements in the page
-            duration_selectors = [
-                "div[class*='duration']",
-                "span[class*='duration']",
-                "[data-duration]",
-            ]
+            # Method 1: Try to get data from intercepted network requests
+            if hasattr(self, '_captured_api_data') and self._captured_api_data:
+                result = self._parse_api_response(self._captured_api_data)
+                if result:
+                    logger.info("Successfully extracted data from network interception")
+                    return result
 
-            for selector in duration_selectors:
-                elements = await self.page.query_selector_all(selector)
-                if elements:
-                    logger.debug(f"Found {len(elements)} duration elements")
-                    # Extract data - implementation depends on actual DOM structure
-                    return {
-                        "duration": {"text": "placeholder", "value": 0},
-                        "distance": {"text": "placeholder", "value": 0},
-                        "duration_in_traffic": {"text": "placeholder", "value": 0}
-                    }
+            # Method 2: JavaScript evaluation to access window objects
+            js_result = await self._extract_from_javascript()
+            if js_result:
+                logger.info("Successfully extracted data from JavaScript objects")
+                return js_result
 
+            # Method 3: DOM-based extraction (least reliable)
+            dom_result = await self._extract_from_dom()
+            if dom_result:
+                logger.info("Extracted data from DOM (less reliable)")
+                return dom_result
+
+            logger.warning("Could not extract duration data from any method")
             return None
 
         except Exception as e:
             logger.error(f"Error extracting data: {e}")
             return None
+
+    def _parse_api_response(self, data: dict) -> Optional[Dict]:
+        """Parse captured API response for duration data"""
+        try:
+            # Google Maps API responses vary, check common structures
+            routes = data.get('routes', [])
+            if not routes:
+                # Try nested structure
+                if 'data' in data:
+                    routes = data['data'].get('routes', [])
+
+            if routes:
+                route = routes[0]
+                leg = route.get('legs', [{}])[0]
+
+                duration = leg.get('duration', {})
+                duration_in_traffic = leg.get('duration_in_traffic', duration)
+                distance = leg.get('distance', {})
+
+                if duration_in_traffic and distance:
+                    return {
+                        "duration": {
+                            "text": duration.get('text', ''),
+                            "value": duration.get('value', 0)
+                        },
+                        "distance": {
+                            "text": distance.get('text', ''),
+                            "value": distance.get('value', 0)
+                        },
+                        "duration_in_traffic": {
+                            "text": duration_in_traffic.get('text', ''),
+                            "value": duration_in_traffic.get('value', 0)
+                        }
+                    }
+            return None
+        except Exception as e:
+            logger.debug(f"Could not parse API response: {e}")
+            return None
+
+    async def _extract_from_javascript(self) -> Optional[Dict]:
+        """Extract data from Google's internal JavaScript objects"""
+        try:
+            # Try multiple approaches to access Google's data
+            js_code = """
+            () => {
+                // Try various locations where Google stores route data
+                const possibleLocations = [
+                    () => window.wiz_progress,
+                    () => window.APP_INITIALIZATION_STATE,
+                    () => window.wizInitData,
+                    () => typeof google !== 'undefined' ? google.maps : null,
+                    () => typeof _foot !== 'undefined' ? _foot : null
+                ];
+
+                for (const getter of possibleLocations) {
+                    try {
+                        const data = getter();
+                        if (data) {
+                            return JSON.stringify(data);
+                        }
+                    } catch (e) {}
+                }
+
+                // Fallback: Try to find data in script tags
+                const scripts = Array.from(document.querySelectorAll('script'));
+                for (const script of scripts) {
+                    const text = script.textContent;
+                    if (text && (text.includes('duration_in_traffic') || text.includes('"duration"'))) {
+                        // Try to extract JSON from inline script
+                        const match = text.match(/\{[\s\S]*"duration"[\s\S]*\}/);
+                        if (match) {
+                            return match[0];
+                        }
+                    }
+                }
+
+                return null;
+            }
+            """
+
+            result = await self.page.evaluate(js_code)
+
+            if result:
+                import json
+                data = json.loads(result)
+                return self._parse_api_response(data)
+
+            return None
+
+        except Exception as e:
+            logger.debug(f"JavaScript extraction failed: {e}")
+            return None
+
+    async def _extract_from_dom(self) -> Optional[Dict]:
+        """Extract data from visible DOM elements"""
+        try:
+            # More specific selectors for Google Maps current UI
+            selectors = {
+                'duration_text': [
+                    'div[role="text"] span:first-child',
+                    '.xlkXcd .mDr44d',  # Current GMaps class
+                    'div[class*="duration"] span',
+                    'span[class*="duration"]'
+                ],
+                'distance_text': [
+                    'div[role="text"] span:nth-child(2)',
+                    '.xlkXcd .ivN21e',  # Current GMaps class
+                    'div[class*="distance"] span'
+                ]
+            }
+
+            duration_text = None
+            distance_text = None
+
+            for selector in selectors['duration_text']:
+                el = await self.page.query_selector(selector)
+                if el:
+                    duration_text = await el.inner_text()
+                    break
+
+            for selector in selectors['distance_text']:
+                el = await self.page.query_selector(selector)
+                if el:
+                    distance_text = await el.inner_text()
+                    break
+
+            # Parse text to get values (approximate)
+            if duration_text and distance_text:
+                duration_val = self._parse_duration_text(duration_text)
+                distance_val = self._parse_distance_text(distance_text)
+
+                # If there's traffic info, it often shows as range "20-35 min"
+                if '-' in duration_text:
+                    duration_val_traffic = self._parse_duration_text(duration_text.split('-')[1].strip())
+                else:
+                    duration_val_traffic = duration_val
+
+                return {
+                    "duration": {
+                        "text": duration_text,
+                        "value": duration_val
+                    },
+                    "distance": {
+                        "text": distance_text,
+                        "value": distance_val
+                    },
+                    "duration_in_traffic": {
+                        "text": duration_text,
+                        "value": duration_val_traffic
+                    }
+                }
+
+            return None
+
+        except Exception as e:
+            logger.debug(f"DOM extraction failed: {e}")
+            return None
+
+    def _parse_duration_text(self, text: str) -> int:
+        """Parse duration text like '25 min' to seconds"""
+        try:
+            # Handle formats: "25 min", "1 hr 30 min", "1h 30m"
+            import re
+            total_seconds = 0
+
+            # Extract hours
+            hr_match = re.search(r'(\d+)\s*hr?', text, re.IGNORECASE)
+            if hr_match:
+                total_seconds += int(hr_match.group(1)) * 3600
+
+            # Extract minutes
+            min_match = re.search(r'(\d+)\s*min?', text, re.IGNORECASE)
+            if min_match:
+                total_seconds += int(min_match.group(1)) * 60
+
+            return total_seconds if total_seconds > 0 else 0
+        except:
+            return 0
+
+    def _parse_distance_text(self, text: str) -> float:
+        """Parse distance text like '12.5 km' to meters"""
+        try:
+            import re
+            # Handle formats: "12.5 km", "1.2 km", "500 m"
+            match = re.search(r'([\d.]+)\s*(km|m)?', text, re.IGNORECASE)
+            if match:
+                value = float(match.group(1))
+                unit = (match.group(2) or '').lower()
+                if unit.startswith('km'):
+                    return value * 1000
+                return value
+            return 0
+        except:
+            return 0
+
+    async def _wait_for_route_data(self) -> bool:
+        """Wait for route data to be loaded on the page"""
+        try:
+            # Try multiple selectors that indicate route data is ready
+            selectors = [
+                'div[role="text"]',  # Route info panel
+                'div[class*="directions"]',
+                'div[class*="route"]',
+                '.mDr44d',  # Current GMaps duration class
+                '.ivN21e'   # Current GMaps distance class
+            ]
+
+            for selector in selectors:
+                try:
+                    await self.page.wait_for_selector(
+                        selector,
+                        state="visible",
+                        timeout=15000
+                    )
+                    logger.debug(f"Route data loaded (found: {selector})")
+                    return True
+                except:
+                    continue
+
+            # Fallback: wait for network idle
+            await self.page.wait_for_load_state("networkidle", timeout=15000)
+            return True
+
+        except Exception as e:
+            logger.warning(f"Wait for route data timeout: {e}")
+            return True  # Proceed anyway
 
     async def scrape_routes(
         self,

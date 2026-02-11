@@ -5,6 +5,8 @@ import yaml
 from pathlib import Path
 from datetime import datetime, time
 from typing import Dict, List
+import pandas as pd
+import geopandas as gpd
 
 from src.osm_extractor import OSMExtractor
 from src.route_generator import RouteGenerator
@@ -60,11 +62,12 @@ class TrafficScraperPipeline:
                 area_config["name"],
                 area_config["bounds"]
             )
-            self.extractor.download_road_network()
+            graph = self.extractor.download_road_network()
 
-            # Get road segments
+            # Get road segments for export
             segments = self.extractor.get_road_segments()
-            networks[area_id] = segments
+            # Store both graph and segments
+            networks[area_id] = {"graph": graph, "segments": segments}
 
             # Export raw GeoJSON
             self.exporter.export(
@@ -75,24 +78,23 @@ class TrafficScraperPipeline:
 
         return networks
 
-    def generate_routes(self, networks: Dict[str, gpd.GeoDataFrame]) -> List[Dict]:
+    def generate_routes(self, networks: Dict[str, Dict]) -> List[Dict]:
         """
         Generate route queries from road networks
 
         Args:
-            networks: Dict of road network GeoDataFrames
+            networks: Dict with "graph" and "segments" keys
 
         Returns:
             List of route queries
         """
         all_routes = []
 
-        for area_id, network in networks.items():
+        for area_id, data in networks.items():
             logger.info(f"Generating routes for {area_id}")
 
-            # Convert GeoDataFrame edges back to graph for routing
-            import osmnx as ox
-            graph = ox.graph_from_gdfs(network, network.edges)
+            # Use the stored graph directly
+            graph = data["graph"]
 
             self.route_generator = RouteGenerator(graph)
             routes = self.route_generator.generate_route_queue()
@@ -160,20 +162,20 @@ class TrafficScraperPipeline:
 
     def process_and_export(
         self,
-        networks: Dict[str, gpd.GeoDataFrame],
+        networks: Dict[str, Dict],
         scraped_data: List[Dict]
     ):
         """
         Process scraped data and export to Shapefile
 
         Args:
-            networks: Dict of road network GeoDataFrames
+            networks: Dict with "graph" and "segments" keys
             scraped_data: List of scraped results
         """
-        # Combine all networks
+        # Combine all segments from networks
         import geopandas as gpd
         combined_network = gpd.GeoDataFrame(
-            pd.concat([n for n in networks.values()], ignore_index=True)
+            pd.concat([n["segments"] for n in networks.values()], ignore_index=True)
         )
 
         # Process by time period
