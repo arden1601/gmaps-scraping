@@ -1,0 +1,36 @@
+scraping:
+  # Time windows for data collection
+  time_periods:
+    peak_am:
+      start: "07:00"
+      end: "09:00"
+    off_peak:
+      start: "10:00"
+      end: "17:00"
+    peak_pm:
+      start: "17:00"
+      end: "20:00"
+
+  # Anti-detection settings
+  delays:
+    min_seconds: 2
+    max_seconds: 10
+
+  workers:
+    max_concurrent: 2
+
+  # Proxy rotation
+  proxies:
+    rotate_after_requests: 50
+    session_rotation: 200
+
+  # Checkpointing
+  checkpoint_interval: 50
+
+  # Retry settings
+  max_retries: 3
+  backoff_multiplier: 2
+
+output:
+  projection: "EPSG:3857"  # Web Mercator (or EPSG:32748 for UTM Zone 48S)
+  output_dir: "data/output"
