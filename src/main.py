@@ -96,7 +96,10 @@ class TrafficScraperPipeline:
             # Use the stored graph directly
             graph = data["graph"]
 
-            self.route_generator = RouteGenerator(graph)
+            # Limit routes for performance (default: 5000 per area)
+            max_routes = self.config.get("scraping", {}).get("max_routes_per_area", 5000)
+
+            self.route_generator = RouteGenerator(graph, max_routes=max_routes)
             routes = self.route_generator.generate_route_queue()
 
             all_routes.extend(routes)
