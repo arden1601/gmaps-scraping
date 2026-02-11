@@ -68,7 +68,7 @@ class RouteGenerator:
             if len(sampled) >= self.max_routes:
                 break
 
-            # Find neighbors within 2-3 hops
+            # Find neighbors within 2-3 hops using NetworkX 2.x+ API
             nearby_nodes = []
             for neighbor in nx.single_source_shortest_path_length(
                 self.graph,
