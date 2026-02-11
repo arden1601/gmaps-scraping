@@ -11,26 +11,24 @@ scraping:
       start: "17:00"
       end: "20:00"
 
+  # Quick test limits
+  max_routes_per_area: 100  # Limit routes for quick testing
+
   # Anti-detection settings
   delays:
     min_seconds: 2
     max_seconds: 10
-
   workers:
     max_concurrent: 2
-
   # Proxy rotation
   proxies:
     rotate_after_requests: 50
     session_rotation: 200
-
   # Checkpointing
   checkpoint_interval: 50
-
   # Retry settings
   max_retries: 3
   backoff_multiplier: 2
-
-output:
-  projection: "EPSG:3857"  # Web Mercator (or EPSG:32748 for UTM Zone 48S)
-  output_dir: "data/output"
+  output:
+    projection: "EPSG:3857"  # Web Mercator (or EPSG:32748 for UTM Zone 48S)
+    output_dir: "data/output"

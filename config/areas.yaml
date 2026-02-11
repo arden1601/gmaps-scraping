@@ -1,18 +1,27 @@
 jakarta:
-  # Jakarta Utara (North Jakarta)
-  jakarta_utara:
-    name: "Jakarta Utara"
+  # Small test area (Kelapa Gading Selatan - part of Jakarta Barat)
+  test_area:
+    name: "Kelapa Gading Selatan"
     bounds:
-      min_lat: -6.2250
-      max_lat: -6.1000
-      min_lon: 106.7000
-      max_lon: 106.8500
-
-  # Jakarta Barat (West Jakarta)
-  jakarta_barat:
-    name: "Jakarta Barat"
-    bounds:
-      min_lat: -6.2500
-      max_lat: -6.1250
-      min_lon: 106.7000
+      min_lat: -6.2300
+      max_lat: -6.2200
+      min_lon: 106.7600
       max_lon: 106.8000
+
+  # Jakarta Utara (North Jakarta) - commented out for quick test
+  # jakarta_utara:
+  #   name: "Jakarta Utara"
+  #   bounds:
+  #     min_lat: -6.2250
+  #     max_lat: -6.1000
+  #     min_lon: 106.7000
+  #     max_lon: 106.8500
+
+  # Jakarta Barat (West Jakarta) - commented out for quick test
+  # jakarta_barat:
+  #   name: "Jakarta Barat"
+  #   bounds:
+  #     min_lat: -6.2500
+  #     max_lat: -6.1250
+  #     min_lon: 106.7000
+  #     max_lon: 106.8000
