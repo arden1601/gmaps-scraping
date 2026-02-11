@@ -23,6 +23,7 @@ class RouteGenerator:
         self.graph = graph
         self.max_routes = max_routes
         self.total_possible_pairs = 0
+        self.route_queue = []
 
         logger.info(f"RouteGenerator initialized with {len(graph.nodes)} nodes, {len(graph.edges)} edges")
 
@@ -54,36 +55,43 @@ class RouteGenerator:
         self,
         intersections: List[Tuple[int, Dict]],
         max_neighbors: int = 50
-    ) -> List[Tuple[int, Dict]]:
+    ) -> List[Dict]:
         """
         Sample intersections and find only nearby connections
 
-        This avoids the O(n²) problem by limiting each node
+        This avoids O(n²) problem by limiting each node
         to only connect to nearby intersections.
         """
-        sampled = []
+        route_queue = []
         connected_pairs = set()
+        intersection_set = {n for n, _ in intersections}
+        intersection_attrs = {n: attrs for n, attrs in intersections}
 
         for i, (node, attrs) in enumerate(intersections):
-            if len(sampled) >= self.max_routes:
+            if self.max_routes and len(route_queue) >= self.max_routes:
                 break
 
-            # Find neighbors within 2-3 hops using NetworkX 2.x+ API
+            # Find neighbors within 2-3 hops
             nearby_nodes = []
-            for neighbor in nx.single_source_shortest_path_length(
-                self.graph,
-                source=node,
-                cutoff=3,
-                weight="length"
-            ).keys():
-                if neighbor in [n for n, _ in intersections]:
-                    nearby_nodes.append(neighbor)
+            try:
+                neighbors = nx.single_source_shortest_path_length(
+                    self.graph,
+                    source=node,
+                    cutoff=3,
+                )
+                for neighbor in neighbors.keys():
+                    if neighbor != node and neighbor in intersection_set:
+                        nearby_nodes.append(neighbor)
+            except nx.NetworkXError:
+                continue
 
             # Connect to this node's nearby intersections
-            connected = False
-            for target in nearby_nodes:
+            for target in nearby_nodes[:max_neighbors]:
+                if self.max_routes and len(route_queue) >= self.max_routes:
+                    break
+
                 pair_id = tuple(sorted([node, target]))
-                if pair_id not in connected_pairs and pair_id[::-1] not in connected_pairs:
+                if pair_id not in connected_pairs:
                     route_queue.append({
                         "origin_node": node,
                         "dest_node": target,
@@ -92,16 +100,13 @@ class RouteGenerator:
                             self.graph.nodes[target]["y"],
                             self.graph.nodes[target]["x"]
                         ),
-                        "sampling_method": "nearby"
                     })
                     connected_pairs.add(pair_id)
-                    connected_pairs.add(pair_id[::-1])
-                    connected = True
 
-            if connected and i % 100 == 0:
-                logger.info(f"Sampled {len(sampled)} intersections, {len(route_queue)} routes so far...")
+            if i % 100 == 0 and i > 0:
+                logger.info(f"Processed {i}/{len(intersections)} intersections, {len(route_queue)} routes so far...")
 
-        return sampled
+        return route_queue
 
     def generate_route_queue(self) -> List[Dict]:
         """
@@ -166,10 +171,10 @@ def main():
 
     # Add some nodes and edges
     G.add_nodes_from([
-        (1, {"x": 106.8, "y": -6.2}),
-        (2, {"x": 106.81, "y": -6.19}),
-        (3, {"x": 106.82, "y": -6.18}),
-        (4, {"x": 106.83, "y": -6.17}),
+        (1, {"x": 106.76, "y": -6.23}),
+        (2, {"x": 106.78, "y": -6.22}),
+        (3, {"x": 106.80, "y": -6.21}),
+        (4, {"x": 106.82, "y": -6.17}),
     ])
 
     G.add_edges_from([

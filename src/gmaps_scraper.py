@@ -319,46 +319,61 @@ class GMapsScraper:
     async def _extract_from_dom(self) -> Optional[Dict]:
         """Extract data from visible DOM elements"""
         try:
-            # More specific selectors for Google Maps current UI
-            selectors = {
-                'duration_text': [
-                    'div[role="text"] span:first-child',
-                    '.xlkXcd .mDr44d',  # Current GMaps class
-                    'div[class*="duration"] span',
-                    'span[class*="duration"]'
-                ],
-                'distance_text': [
-                    'div[role="text"] span:nth-child(2)',
-                    '.xlkXcd .ivN21e',  # Current GMaps class
-                    'div[class*="distance"] span'
-                ]
-            }
+            # Try to extract from the first route trip panel
+            # Each trip is in a div with data-trip-index attribute
+            trip_el = await self.page.query_selector('div[data-trip-index="0"]')
 
             duration_text = None
             distance_text = None
 
-            for selector in selectors['duration_text']:
-                el = await self.page.query_selector(selector)
-                if el:
-                    duration_text = await el.inner_text()
-                    break
+            if trip_el:
+                # Duration is in div.Fk3sm.fontHeadlineSmall inside the trip
+                dur_el = await trip_el.query_selector('div.Fk3sm.fontHeadlineSmall')
+                if dur_el:
+                    duration_text = (await dur_el.inner_text()).strip()
 
-            for selector in selectors['distance_text']:
-                el = await self.page.query_selector(selector)
-                if el:
-                    distance_text = await el.inner_text()
-                    break
+                # Distance is in div.ivN21e
+                dist_el = await trip_el.query_selector('div.ivN21e')
+                if dist_el:
+                    distance_text = (await dist_el.inner_text()).strip()
 
-            # Parse text to get values (approximate)
-            if duration_text and distance_text:
+            # Fallback: try broader selectors
+            if not duration_text:
+                for selector in [
+                    'div.Fk3sm.fontHeadlineSmall',
+                    'div.Fl2iee.HNPWFe',
+                    'div.cGRe9e',
+                ]:
+                    el = await self.page.query_selector(selector)
+                    if el:
+                        duration_text = (await el.inner_text()).strip()
+                        if duration_text:
+                            break
+
+            if not distance_text:
+                for selector in [
+                    'div.ivN21e',
+                    'div.ivN21e.tUEI8e',
+                ]:
+                    el = await self.page.query_selector(selector)
+                    if el:
+                        distance_text = (await el.inner_text()).strip()
+                        if distance_text:
+                            break
+
+            logger.debug(f"DOM extracted: duration='{duration_text}', distance='{distance_text}'")
+
+            # Parse text to get values
+            if duration_text:
                 duration_val = self._parse_duration_text(duration_text)
-                distance_val = self._parse_distance_text(distance_text)
 
                 # If there's traffic info, it often shows as range "20-35 min"
-                if '-' in duration_text:
+                if '-' in duration_text and any(c.isdigit() for c in duration_text.split('-')[1]):
                     duration_val_traffic = self._parse_duration_text(duration_text.split('-')[1].strip())
                 else:
                     duration_val_traffic = duration_val
+
+                distance_val = self._parse_distance_text(distance_text) if distance_text else 0
 
                 return {
                     "duration": {
@@ -366,7 +381,7 @@ class GMapsScraper:
                         "value": duration_val
                     },
                     "distance": {
-                        "text": distance_text,
+                        "text": distance_text or "",
                         "value": distance_val
                     },
                     "duration_in_traffic": {
@@ -382,36 +397,41 @@ class GMapsScraper:
             return None
 
     def _parse_duration_text(self, text: str) -> int:
-        """Parse duration text like '25 min' to seconds"""
+        """Parse duration text like '25 min', '7 mnt', '1 jam 30 mnt' to seconds"""
         try:
-            # Handle formats: "25 min", "1 hr 30 min", "1h 30m"
-            import re
             total_seconds = 0
 
-            # Extract hours
-            hr_match = re.search(r'(\d+)\s*hr?', text, re.IGNORECASE)
+            # Extract hours (hr, h, jam)
+            hr_match = re.search(r'(\d+)\s*(?:hr|jam|h)\b', text, re.IGNORECASE)
             if hr_match:
                 total_seconds += int(hr_match.group(1)) * 3600
 
-            # Extract minutes
-            min_match = re.search(r'(\d+)\s*min?', text, re.IGNORECASE)
+            # Extract minutes (min, mnt, menit, m)
+            min_match = re.search(r'(\d+)\s*(?:min|mnt|menit|m)\b', text, re.IGNORECASE)
             if min_match:
                 total_seconds += int(min_match.group(1)) * 60
 
-            return total_seconds if total_seconds > 0 else 0
+            # If nothing matched, try to parse as just a number (assume minutes)
+            if total_seconds == 0:
+                num_match = re.search(r'(\d+)', text)
+                if num_match:
+                    total_seconds = int(num_match.group(1)) * 60
+
+            return total_seconds
         except:
             return 0
 
     def _parse_distance_text(self, text: str) -> float:
-        """Parse distance text like '12.5 km' to meters"""
+        """Parse distance text like '12.5 km', '1,6 km', '500 m' to meters"""
         try:
-            import re
-            # Handle formats: "12.5 km", "1.2 km", "500 m"
-            match = re.search(r'([\d.]+)\s*(km|m)?', text, re.IGNORECASE)
+            # Handle Indonesian locale comma decimals: "1,6 km" -> "1.6 km"
+            normalized = text.replace(',', '.')
+            # Handle formats: "12.5 km", "1.6 km", "500 m"
+            match = re.search(r'([\d.]+)\s*(km|m)?', normalized, re.IGNORECASE)
             if match:
                 value = float(match.group(1))
                 unit = (match.group(2) or '').lower()
-                if unit.startswith('km'):
+                if unit == 'km':
                     return value * 1000
                 return value
             return 0
@@ -423,11 +443,11 @@ class GMapsScraper:
         try:
             # Try multiple selectors that indicate route data is ready
             selectors = [
-                'div[role="text"]',  # Route info panel
-                'div[class*="directions"]',
-                'div[class*="route"]',
-                '.mDr44d',  # Current GMaps duration class
-                '.ivN21e'   # Current GMaps distance class
+                'div[data-trip-index="0"]',  # Route trip panel
+                'div.Fk3sm.fontHeadlineSmall',  # Duration element
+                'div.ivN21e',  # Distance element
+                'div.Fl2iee.HNPWFe',  # Quick duration in travel mode buttons
+                'div.MespJc',  # Route details container
             ]
 
             for selector in selectors:
@@ -454,7 +474,8 @@ class GMapsScraper:
         self,
         routes: List[Dict],
         departure_time: datetime,
-        progress_file: Optional[str] = None
+        progress_file: Optional[str] = None,
+        time_limit_seconds: Optional[int] = None
     ) -> List[Dict]:
         """
         Scrape multiple routes
@@ -463,12 +484,14 @@ class GMapsScraper:
             routes: List of route dicts with origin_coords and dest_coords
             departure_time: Time for traffic-aware routing
             progress_file: Optional file to save progress
+            time_limit_seconds: Optional max scraping duration in seconds
 
         Returns:
             List of results with scraped data
         """
         results = []
         completed = set()
+        start_time = time.time()
 
         # Load progress if exists
         if progress_file:
@@ -485,6 +508,12 @@ class GMapsScraper:
             if i in completed:
                 continue
 
+            # Check time limit
+            if time_limit_seconds and (time.time() - start_time) >= time_limit_seconds:
+                elapsed = time.time() - start_time
+                logger.info(f"Time limit reached ({elapsed:.0f}s). Stopping after {len(results)} routes.")
+                break
+
             origin = route["origin_coords"]
             dest = route["dest_coords"]
 
@@ -499,13 +528,24 @@ class GMapsScraper:
                 })
                 completed.add(i)
 
-            # Save progress periodically
-            if progress_file and len(results) % 50 == 0:
-                with open(progress_file, "w") as f:
-                    json.dump({
-                        "completed": list(completed),
-                        "results": results
-                    }, f)
+            # Save progress periodically (every 10 routes)
+            if progress_file and len(results) > 0 and len(results) % 10 == 0:
+                self._save_progress(progress_file, completed, results)
                 logger.info(f"Saved progress: {len(results)} routes completed")
 
+        # Always save final progress
+        if progress_file and results:
+            self._save_progress(progress_file, completed, results)
+            logger.info(f"Final save: {len(results)} routes completed")
+
         return results
+
+    def _save_progress(self, progress_file: str, completed: set, results: list):
+        """Save progress to file"""
+        from pathlib import Path
+        Path(progress_file).parent.mkdir(parents=True, exist_ok=True)
+        with open(progress_file, "w") as f:
+            json.dump({
+                "completed": list(completed),
+                "results": results
+            }, f, indent=2)

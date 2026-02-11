@@ -112,7 +112,8 @@ class TrafficScraperPipeline:
         self,
         routes: List[Dict],
         time_period: str,
-        date: datetime
+        date: datetime,
+        time_limit_seconds: int = None
     ) -> List[Dict]:
         """
         Scrape routes for a specific time period
@@ -121,6 +122,7 @@ class TrafficScraperPipeline:
             routes: List of route queries
             time_period: 'peak_am', 'off_peak', 'peak_pm'
             date: Date for scraping
+            time_limit_seconds: Optional max duration in seconds
 
         Returns:
             List of scraped results
@@ -146,7 +148,8 @@ class TrafficScraperPipeline:
             results = await self.scraper.scrape_routes(
                 routes,
                 departure_time,
-                progress_file=f"data/raw/{time_period}_progress.json"
+                progress_file=f"data/raw/{time_period}_progress.json",
+                time_limit_seconds=time_limit_seconds
             )
 
             # Add time period to results
@@ -204,18 +207,31 @@ class TrafficScraperPipeline:
 
         logger.info(f"Exported final Shapefile to {output_path}")
 
-    async def run(self, areas_config: Dict, scrape_date: datetime = None):
+    async def run(
+        self,
+        areas_config: Dict,
+        scrape_date: datetime = None,
+        time_limit_seconds: int = None,
+        periods: List[str] = None
+    ):
         """
         Run full pipeline
 
         Args:
             areas_config: Dict of area configurations
             scrape_date: Date for scraping (default: today)
+            time_limit_seconds: Optional max scraping duration per period
+            periods: List of time periods to scrape (default: all)
         """
         if scrape_date is None:
             scrape_date = datetime.now()
+        if periods is None:
+            periods = ["peak_am", "off_peak", "peak_pm"]
 
         logger.info(f"Starting Jakarta traffic scraper for {scrape_date}")
+        if time_limit_seconds:
+            logger.info(f"Time limit: {time_limit_seconds}s per period")
+        logger.info(f"Time periods: {periods}")
 
         # Step 1: Extract road networks
         networks = self.extract_road_networks(areas_config)
@@ -225,24 +241,93 @@ class TrafficScraperPipeline:
 
         # Step 3: Scrape each time period
         all_scraped = []
-        for period in ["peak_am", "off_peak", "peak_pm"]:
-            results = await self.scrape_time_period(routes, period, scrape_date)
+        for period in periods:
+            results = await self.scrape_time_period(
+                routes, period, scrape_date,
+                time_limit_seconds=time_limit_seconds
+            )
             all_scraped.extend(results)
 
-        # Step 4: Process and export
-        self.process_and_export(networks, all_scraped)
+        # Step 4: Process and export (only if we have data)
+        if all_scraped:
+            self.process_and_export(networks, all_scraped)
+        else:
+            logger.warning("No data scraped, skipping export")
 
-        logger.info("Pipeline complete")
+        # Summary
+        logger.info(f"\n{'='*50}")
+        logger.info(f"Pipeline complete!")
+        logger.info(f"Total routes scraped: {len(all_scraped)}")
+        for period in periods:
+            period_count = sum(1 for r in all_scraped if r.get('time_period') == period)
+            logger.info(f"  {period}: {period_count} routes")
+        logger.info(f"Data saved to: data/raw/")
+        logger.info(f"{'='*50}")
 
 
 async def main():
     """Main entry point"""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Jakarta Traffic Scraper")
+    parser.add_argument(
+        "--duration", type=str, default=None,
+        help="Max scraping duration, e.g. '5m', '30m', '1h', '24h'. Default: no limit (run all routes)"
+    )
+    parser.add_argument(
+        "--routes", type=int, default=None,
+        help="Override max routes per area (default: from config, usually 100)"
+    )
+    parser.add_argument(
+        "--period", type=str, default=None,
+        choices=["peak_am", "off_peak", "peak_pm"],
+        help="Scrape only a specific time period. Default: all three periods"
+    )
+    args = parser.parse_args()
+
+    # Parse duration string to seconds
+    time_limit = None
+    if args.duration:
+        time_limit = _parse_duration_arg(args.duration)
+        logger.info(f"Time limit set to {time_limit} seconds ({args.duration})")
+
     # Load area configuration
     with open("config/areas.yaml", "r") as f:
         areas_config = yaml.safe_load(f)["jakarta"]
 
     pipeline = TrafficScraperPipeline()
-    await pipeline.run(areas_config)
+
+    # Override max routes if specified
+    if args.routes:
+        pipeline.config.setdefault("scraping", {})["max_routes_per_area"] = args.routes
+
+    # Override time periods if specified
+    periods = ["peak_am", "off_peak", "peak_pm"]
+    if args.period:
+        periods = [args.period]
+
+    await pipeline.run(areas_config, time_limit_seconds=time_limit, periods=periods)
+
+
+def _parse_duration_arg(s: str) -> int:
+    """Parse duration string like '5m', '1h', '24h', '30m' to seconds"""
+    import re
+    s = s.strip().lower()
+    match = re.match(r'^(\d+(?:\.\d+)?)\s*(s|m|h|min|sec|hr|hour|hours|mins|minutes|seconds)?$', s)
+    if not match:
+        raise ValueError(f"Invalid duration format: '{s}'. Use e.g. '5m', '1h', '30m', '24h'")
+
+    value = float(match.group(1))
+    unit = match.group(2) or 'm'  # default to minutes
+
+    if unit in ('s', 'sec', 'seconds'):
+        return int(value)
+    elif unit in ('m', 'min', 'mins', 'minutes'):
+        return int(value * 60)
+    elif unit in ('h', 'hr', 'hour', 'hours'):
+        return int(value * 3600)
+    else:
+        return int(value * 60)
 
 
 if __name__ == "__main__":
