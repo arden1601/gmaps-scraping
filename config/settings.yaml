@@ -32,3 +32,10 @@ scraping:
   output:
     projection: "EPSG:3857"  # Web Mercator (or EPSG:32748 for UTM Zone 48S)
     output_dir: "data/output"
+
+# Hospital accessibility mode
+hospital_mode:
+  csv_path: "config/RS_Puskesmas.csv"
+  origins_per_hospital: 5        # random origin points per hospital
+  min_distance_km: 1.0           # minimum origin-hospital distance (km)
+  geocode_cache: "cache/kelurahan_cache.json"

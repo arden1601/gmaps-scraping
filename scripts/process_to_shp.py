@@ -27,6 +27,12 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 PERIODS = ["peak_am", "off_peak", "peak_pm"]
 
+# Minimum thresholds to filter unreliable short-distance data.
+# Google Maps rounds durations to the nearest minute (60s), so very
+# short routes produce wildly inaccurate speeds.
+MIN_DISTANCE_M = 200   # skip routes shorter than 200m
+MIN_DURATION_S = 120   # skip routes shorter than 2 minutes
+
 
 # ── helpers ──────────────────────────────────────────────────────────
 
@@ -106,6 +112,7 @@ def match_routes_to_edges(all_data: list, graphs: list, edges_gdf) -> gpd.GeoDat
     edge_speeds = defaultdict(lambda: defaultdict(list))
     matched = 0
     unmatched = 0
+    filtered_short = 0
 
     for item in all_data:
         origin = item.get("origin_node")
@@ -118,6 +125,12 @@ def match_routes_to_edges(all_data: list, graphs: list, edges_gdf) -> gpd.GeoDat
         dist = sd.get("distance", {})
         duration_sec = dur_traffic.get("value") or dur_normal.get("value") or 0
         distance_m = dist.get("value", 0)
+
+        # Filter out unreliable short-distance routes
+        if distance_m < MIN_DISTANCE_M or duration_sec < MIN_DURATION_S:
+            filtered_short += 1
+            continue
+
         speed = calc_speed_kmh(duration_sec, distance_m)
 
         if speed is None:
@@ -149,6 +162,8 @@ def match_routes_to_edges(all_data: list, graphs: list, edges_gdf) -> gpd.GeoDat
             unmatched += 1
 
     print(f"\n  ✅ Matched: {matched} routes → OSM edges")
+    if filtered_short:
+        print(f"  🔽 Filtered: {filtered_short} routes (distance < {MIN_DISTANCE_M}m or duration < {MIN_DURATION_S}s)")
     if unmatched:
         print(f"  ⚠ Unmatched: {unmatched} routes (no direct edge found)")
 

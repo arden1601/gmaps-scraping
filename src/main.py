@@ -13,6 +13,7 @@ from src.route_generator import RouteGenerator
 from src.gmaps_scraper import GMapsScraper
 from src.data_processor import DataProcessor
 from src.exporter import ShapefileExporter
+from src.hospital_route_generator import HospitalRouteGenerator
 import logging
 
 logging.basicConfig(
@@ -105,6 +106,42 @@ class TrafficScraperPipeline:
             all_routes.extend(routes)
 
             logger.info(f"Generated {len(routes)} routes for {area_id}")
+
+        return all_routes
+
+    def generate_hospital_routes(self, networks: Dict[str, Dict]) -> List[Dict]:
+        """
+        Generate routes from random origins to hospitals using HospitalRouteGenerator.
+
+        Args:
+            networks: Dict with "graph" and "segments" keys
+
+        Returns:
+            List of hospital route queries
+        """
+        hosp_cfg = self.config.get("hospital_mode", {})
+        csv_path = hosp_cfg.get("csv_path", "config/RS_Puskesmas.csv")
+        origins_per_hospital = hosp_cfg.get("origins_per_hospital", 5)
+        min_distance_km = hosp_cfg.get("min_distance_km", 1.0)
+        geocode_cache = hosp_cfg.get("geocode_cache", "cache/kelurahan_cache.json")
+        max_routes = self.config.get("scraping", {}).get("max_routes_per_area", None)
+
+        all_routes = []
+        for area_id, data in networks.items():
+            logger.info(f"Generating hospital routes for {area_id}")
+            graph = data["graph"]
+
+            gen = HospitalRouteGenerator(
+                graph=graph,
+                csv_path=csv_path,
+                origins_per_hospital=origins_per_hospital,
+                min_distance_km=min_distance_km,
+                max_routes=max_routes,
+                geocode_cache_path=geocode_cache,
+            )
+            routes = gen.generate_route_queue()
+            all_routes.extend(routes)
+            logger.info(f"Generated {len(routes)} hospital routes for {area_id}")
 
         return all_routes
 
@@ -212,7 +249,8 @@ class TrafficScraperPipeline:
         areas_config: Dict,
         scrape_date: datetime = None,
         time_limit_seconds: int = None,
-        periods: List[str] = None
+        periods: List[str] = None,
+        mode: str = "road",
     ):
         """
         Run full pipeline
@@ -222,13 +260,14 @@ class TrafficScraperPipeline:
             scrape_date: Date for scraping (default: today)
             time_limit_seconds: Optional max scraping duration per period
             periods: List of time periods to scrape (default: all)
+            mode: 'road' (intersection pairs) or 'hospital' (origins → hospitals)
         """
         if scrape_date is None:
             scrape_date = datetime.now()
         if periods is None:
             periods = ["peak_am", "off_peak", "peak_pm"]
 
-        logger.info(f"Starting Jakarta traffic scraper for {scrape_date}")
+        logger.info(f"Starting Jakarta traffic scraper for {scrape_date} (mode={mode})")
         if time_limit_seconds:
             logger.info(f"Time limit: {time_limit_seconds}s per period")
         logger.info(f"Time periods: {periods}")
@@ -236,8 +275,11 @@ class TrafficScraperPipeline:
         # Step 1: Extract road networks
         networks = self.extract_road_networks(areas_config)
 
-        # Step 2: Generate routes
-        routes = self.generate_routes(networks)
+        # Step 2: Generate routes (depends on mode)
+        if mode == "hospital":
+            routes = self.generate_hospital_routes(networks)
+        else:
+            routes = self.generate_routes(networks)
 
         # Step 3: Scrape each time period
         all_scraped = []
@@ -250,13 +292,17 @@ class TrafficScraperPipeline:
 
         # Step 4: Process and export (only if we have data)
         if all_scraped:
-            self.process_and_export(networks, all_scraped)
+            if mode == "hospital":
+                # Hospital mode: save raw JSON only; use process_hospital_shp.py for Shapefile
+                logger.info("Hospital mode: raw results saved. Run scripts/process_hospital_shp.py to generate Shapefile.")
+            else:
+                self.process_and_export(networks, all_scraped)
         else:
             logger.warning("No data scraped, skipping export")
 
         # Summary
         logger.info(f"\n{'='*50}")
-        logger.info(f"Pipeline complete!")
+        logger.info(f"Pipeline complete! (mode={mode})")
         logger.info(f"Total routes scraped: {len(all_scraped)}")
         for period in periods:
             period_count = sum(1 for r in all_scraped if r.get('time_period') == period)
@@ -283,6 +329,11 @@ async def main():
         choices=["peak_am", "off_peak", "peak_pm"],
         help="Scrape only a specific time period. Default: all three periods"
     )
+    parser.add_argument(
+        "--mode", type=str, default="road",
+        choices=["road", "hospital"],
+        help="Routing mode: 'road' (intersection pairs) or 'hospital' (random origins → hospitals)"
+    )
     args = parser.parse_args()
 
     # Parse duration string to seconds
@@ -306,7 +357,12 @@ async def main():
     if args.period:
         periods = [args.period]
 
-    await pipeline.run(areas_config, time_limit_seconds=time_limit, periods=periods)
+    await pipeline.run(
+        areas_config,
+        time_limit_seconds=time_limit,
+        periods=periods,
+        mode=args.mode,
+    )
 
 
 def _parse_duration_arg(s: str) -> int:

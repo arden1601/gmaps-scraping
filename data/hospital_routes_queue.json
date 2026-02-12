@@ -1,0 +1,1808 @@
+{
+  "generated_at": "2026-02-12T13:40:54.165686",
+  "total_routes": 100,
+  "origins_per_hospital": 5,
+  "min_distance_m": 1000.0,
+  "routes": [
+    {
+      "origin_node": 5442285777,
+      "origin_coords": [
+        -6.2405083,
+        106.7409075
+      ],
+      "origin_kelurahan": "Kreo Selatan",
+      "dest_node": 1840969386,
+      "dest_coords": [
+        -6.14815250000001,
+        106.8046336
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Tambora",
+      "dest_hospital_id": "10",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 12453.5,
+      "path_coords_count": 589
+    },
+    {
+      "origin_node": 7241648350,
+      "origin_coords": [
+        -6.2078037,
+        106.7742487
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 1840969386,
+      "dest_coords": [
+        -6.14815250000001,
+        106.8046336
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Tambora",
+      "dest_hospital_id": "10",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7435.0,
+      "path_coords_count": 328
+    },
+    {
+      "origin_node": 6332425566,
+      "origin_coords": [
+        -6.1522513,
+        106.7471552
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 1840969386,
+      "dest_coords": [
+        -6.14815250000001,
+        106.8046336
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Tambora",
+      "dest_hospital_id": "10",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 6370.8,
+      "path_coords_count": 233
+    },
+    {
+      "origin_node": 5042347100,
+      "origin_coords": [
+        -6.2307257,
+        106.7548613
+      ],
+      "origin_kelurahan": "Pesanggrahan",
+      "dest_node": 1840969386,
+      "dest_coords": [
+        -6.14815250000001,
+        106.8046336
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Tambora",
+      "dest_hospital_id": "10",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 10704.1,
+      "path_coords_count": 468
+    },
+    {
+      "origin_node": 5504791695,
+      "origin_coords": [
+        -6.1806979,
+        106.7667623
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 1840969386,
+      "dest_coords": [
+        -6.14815250000001,
+        106.8046336
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Tambora",
+      "dest_hospital_id": "10",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5534.0,
+      "path_coords_count": 267
+    },
+    {
+      "origin_node": 5009363636,
+      "origin_coords": [
+        -6.1598691,
+        106.760058
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 1709420683,
+      "dest_coords": [
+        -6.1428787,
+        106.7349086
+      ],
+      "dest_hospital": "RSUD CENGKARENG",
+      "dest_hospital_id": "13",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3361.5,
+      "path_coords_count": 227
+    },
+    {
+      "origin_node": 4295504772,
+      "origin_coords": [
+        -6.1809795,
+        106.70427
+      ],
+      "origin_kelurahan": "Ketapang",
+      "dest_node": 1709420683,
+      "dest_coords": [
+        -6.1428787,
+        106.7349086
+      ],
+      "dest_hospital": "RSUD CENGKARENG",
+      "dest_hospital_id": "13",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5424.2,
+      "path_coords_count": 451
+    },
+    {
+      "origin_node": 5082958060,
+      "origin_coords": [
+        -6.2151682,
+        106.7934496
+      ],
+      "origin_kelurahan": "Kebayoran Lama",
+      "dest_node": 1709420683,
+      "dest_coords": [
+        -6.1428787,
+        106.7349086
+      ],
+      "dest_hospital": "RSUD CENGKARENG",
+      "dest_hospital_id": "13",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 10319.7,
+      "path_coords_count": 491
+    },
+    {
+      "origin_node": 5479410123,
+      "origin_coords": [
+        -6.203186,
+        106.7778222
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 1709420683,
+      "dest_coords": [
+        -6.1428787,
+        106.7349086
+      ],
+      "dest_hospital": "RSUD CENGKARENG",
+      "dest_hospital_id": "13",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 8214.3,
+      "path_coords_count": 392
+    },
+    {
+      "origin_node": 6273374020,
+      "origin_coords": [
+        -6.2303201,
+        106.7264082
+      ],
+      "origin_kelurahan": "Larangan Utara",
+      "dest_node": 7238107555,
+      "dest_coords": [
+        -6.1686623,
+        106.7976264
+      ],
+      "dest_hospital": "RSU SUMBER WARAS",
+      "dest_hospital_id": "14",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 10439.6,
+      "path_coords_count": 482
+    },
+    {
+      "origin_node": 5034143463,
+      "origin_coords": [
+        -6.1823615,
+        106.7175731
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 7238107555,
+      "dest_coords": [
+        -6.1686623,
+        106.7976264
+      ],
+      "dest_hospital": "RSU SUMBER WARAS",
+      "dest_hospital_id": "14",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 8980.0,
+      "path_coords_count": 324
+    },
+    {
+      "origin_node": 331985514,
+      "origin_coords": [
+        -6.1715556,
+        106.7685042
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 7238107555,
+      "dest_coords": [
+        -6.1686623,
+        106.7976264
+      ],
+      "dest_hospital": "RSU SUMBER WARAS",
+      "dest_hospital_id": "14",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3235.5,
+      "path_coords_count": 164
+    },
+    {
+      "origin_node": 331473961,
+      "origin_coords": [
+        -6.1632206,
+        106.7674594
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 7238107555,
+      "dest_coords": [
+        -6.1686623,
+        106.7976264
+      ],
+      "dest_hospital": "RSU SUMBER WARAS",
+      "dest_hospital_id": "14",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3389.5,
+      "path_coords_count": 137
+    },
+    {
+      "origin_node": 310726407,
+      "origin_coords": [
+        -6.2315315,
+        106.7975685
+      ],
+      "origin_kelurahan": "Kebayoran Baru",
+      "dest_node": 7238107555,
+      "dest_coords": [
+        -6.1686623,
+        106.7976264
+      ],
+      "dest_hospital": "RSU SUMBER WARAS",
+      "dest_hospital_id": "14",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 6990.7,
+      "path_coords_count": 362
+    },
+    {
+      "origin_node": 4918262769,
+      "origin_coords": [
+        -6.2092507,
+        106.7733386
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 12165913099,
+      "dest_coords": [
+        -6.1461812,
+        106.7082289
+      ],
+      "dest_hospital": "RSUD KALIDERES",
+      "dest_hospital_id": "15",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 10049.4,
+      "path_coords_count": 370
+    },
+    {
+      "origin_node": 5479738383,
+      "origin_coords": [
+        -6.212906,
+        106.7470774
+      ],
+      "origin_kelurahan": "Kembangan",
+      "dest_node": 12165913099,
+      "dest_coords": [
+        -6.1461812,
+        106.7082289
+      ],
+      "dest_hospital": "RSUD KALIDERES",
+      "dest_hospital_id": "15",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 8572.8,
+      "path_coords_count": 373
+    },
+    {
+      "origin_node": 409554584,
+      "origin_coords": [
+        -6.1515339,
+        106.7239407
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 12165913099,
+      "dest_coords": [
+        -6.1461812,
+        106.7082289
+      ],
+      "dest_hospital": "RSUD KALIDERES",
+      "dest_hospital_id": "15",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 1836.2,
+      "path_coords_count": 95
+    },
+    {
+      "origin_node": 5509797334,
+      "origin_coords": [
+        -6.2032086,
+        106.7006387
+      ],
+      "origin_kelurahan": "Pondok Bahar",
+      "dest_node": 12165913099,
+      "dest_coords": [
+        -6.1461812,
+        106.7082289
+      ],
+      "dest_hospital": "RSUD KALIDERES",
+      "dest_hospital_id": "15",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 6396.4,
+      "path_coords_count": 471
+    },
+    {
+      "origin_node": 5078300842,
+      "origin_coords": [
+        -6.2482913,
+        106.75823
+      ],
+      "origin_kelurahan": "Petukangan Selatan",
+      "dest_node": 12165913099,
+      "dest_coords": [
+        -6.1461812,
+        106.7082289
+      ],
+      "dest_hospital": "RSUD KALIDERES",
+      "dest_hospital_id": "15",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 12628.1,
+      "path_coords_count": 250
+    },
+    {
+      "origin_node": 5441553137,
+      "origin_coords": [
+        -6.2467901,
+        106.7161666
+      ],
+      "origin_kelurahan": "Paninggilan",
+      "dest_node": 343344971,
+      "dest_coords": [
+        -6.1946632,
+        106.736305
+      ],
+      "dest_hospital": "RSUD KEMBANGAN",
+      "dest_hospital_id": "16",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 6209.0,
+      "path_coords_count": 389
+    },
+    {
+      "origin_node": 7249344905,
+      "origin_coords": [
+        -6.1925385,
+        106.7063596
+      ],
+      "origin_kelurahan": "Petir",
+      "dest_node": 343344971,
+      "dest_coords": [
+        -6.1946632,
+        106.736305
+      ],
+      "dest_hospital": "RSUD KEMBANGAN",
+      "dest_hospital_id": "16",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3318.8,
+      "path_coords_count": 277
+    },
+    {
+      "origin_node": 5142720352,
+      "origin_coords": [
+        -6.1848689,
+        106.7403933
+      ],
+      "origin_kelurahan": "Kembangan",
+      "dest_node": 343344971,
+      "dest_coords": [
+        -6.1946632,
+        106.736305
+      ],
+      "dest_hospital": "RSUD KEMBANGAN",
+      "dest_hospital_id": "16",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 1179.1,
+      "path_coords_count": 99
+    },
+    {
+      "origin_node": 8460953109,
+      "origin_coords": [
+        -6.2365009,
+        106.7353089
+      ],
+      "origin_kelurahan": "Cipadu",
+      "dest_node": 343344971,
+      "dest_coords": [
+        -6.1946632,
+        106.736305
+      ],
+      "dest_hospital": "RSUD KEMBANGAN",
+      "dest_hospital_id": "16",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 4653.4,
+      "path_coords_count": 213
+    },
+    {
+      "origin_node": 5497894742,
+      "origin_coords": [
+        -6.2413348,
+        106.7564399
+      ],
+      "origin_kelurahan": "Petukangan Selatan",
+      "dest_node": 332526380,
+      "dest_coords": [
+        -6.1908388,
+        106.7637229
+      ],
+      "dest_hospital": "RS SILOAM KEBON JERUK",
+      "dest_hospital_id": "18",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5672.3,
+      "path_coords_count": 207
+    },
+    {
+      "origin_node": 3832120147,
+      "origin_coords": [
+        -6.1528847,
+        106.7036803
+      ],
+      "origin_kelurahan": "Unknown",
+      "dest_node": 332526380,
+      "dest_coords": [
+        -6.1908388,
+        106.7637229
+      ],
+      "dest_hospital": "RS SILOAM KEBON JERUK",
+      "dest_hospital_id": "18",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7865.8,
+      "path_coords_count": 250
+    },
+    {
+      "origin_node": 4586865708,
+      "origin_coords": [
+        -6.2190086,
+        106.7914618
+      ],
+      "origin_kelurahan": "Kebayoran Lama",
+      "dest_node": 332526380,
+      "dest_coords": [
+        -6.1908388,
+        106.7637229
+      ],
+      "dest_hospital": "RS SILOAM KEBON JERUK",
+      "dest_hospital_id": "18",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 4383.4,
+      "path_coords_count": 409
+    },
+    {
+      "origin_node": 331756793,
+      "origin_coords": [
+        -6.1483675,
+        106.7863994
+      ],
+      "origin_kelurahan": "Grogol Petamburan",
+      "dest_node": 332526380,
+      "dest_coords": [
+        -6.1908388,
+        106.7637229
+      ],
+      "dest_hospital": "RS SILOAM KEBON JERUK",
+      "dest_hospital_id": "18",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5346.7,
+      "path_coords_count": 399
+    },
+    {
+      "origin_node": 5337052650,
+      "origin_coords": [
+        -6.230362,
+        106.7045232
+      ],
+      "origin_kelurahan": "Sudimara Barat",
+      "dest_node": 332526380,
+      "dest_coords": [
+        -6.1908388,
+        106.7637229
+      ],
+      "dest_hospital": "RS SILOAM KEBON JERUK",
+      "dest_hospital_id": "18",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7882.8,
+      "path_coords_count": 322
+    },
+    {
+      "origin_node": 6880143853,
+      "origin_coords": [
+        -6.1695389,
+        106.7993142
+      ],
+      "origin_kelurahan": "Grogol Petamburan",
+      "dest_node": 5488085213,
+      "dest_coords": [
+        -6.2181713,
+        106.778025
+      ],
+      "dest_hospital": "RS EKA PERMATA HIJAU",
+      "dest_hospital_id": "19",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5897.6,
+      "path_coords_count": 395
+    },
+    {
+      "origin_node": 7229622295,
+      "origin_coords": [
+        -6.133121,
+        106.777501
+      ],
+      "origin_kelurahan": "Penjaringan",
+      "dest_node": 5488085213,
+      "dest_coords": [
+        -6.2181713,
+        106.778025
+      ],
+      "dest_hospital": "RS EKA PERMATA HIJAU",
+      "dest_hospital_id": "19",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 9457.3,
+      "path_coords_count": 339
+    },
+    {
+      "origin_node": 5337053598,
+      "origin_coords": [
+        -6.2378648,
+        106.7096827
+      ],
+      "origin_kelurahan": "Sudimara Jaya",
+      "dest_node": 5488085213,
+      "dest_coords": [
+        -6.2181713,
+        106.778025
+      ],
+      "dest_hospital": "RS EKA PERMATA HIJAU",
+      "dest_hospital_id": "19",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7865.4,
+      "path_coords_count": 422
+    },
+    {
+      "origin_node": 5097407798,
+      "origin_coords": [
+        -6.1333241,
+        106.7432096
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 5488085213,
+      "dest_coords": [
+        -6.2181713,
+        106.778025
+      ],
+      "dest_hospital": "RS EKA PERMATA HIJAU",
+      "dest_hospital_id": "19",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 10189.4,
+      "path_coords_count": 464
+    },
+    {
+      "origin_node": 11303893809,
+      "origin_coords": [
+        -6.1895484,
+        106.7193795
+      ],
+      "origin_kelurahan": "Kembangan",
+      "dest_node": 5488085213,
+      "dest_coords": [
+        -6.2181713,
+        106.778025
+      ],
+      "dest_hospital": "RS EKA PERMATA HIJAU",
+      "dest_hospital_id": "19",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7222.0,
+      "path_coords_count": 294
+    },
+    {
+      "origin_node": 318591425,
+      "origin_coords": [
+        -6.1541645,
+        106.7279101
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 392728149,
+      "dest_coords": [
+        -6.14378899999999,
+        106.819198
+      ],
+      "dest_hospital": "RSUD TAMANSARI",
+      "dest_hospital_id": "20",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 10158.1,
+      "path_coords_count": 295
+    },
+    {
+      "origin_node": 4914124635,
+      "origin_coords": [
+        -6.2072898,
+        106.7586409
+      ],
+      "origin_kelurahan": "Kembangan",
+      "dest_node": 392728149,
+      "dest_coords": [
+        -6.14378899999999,
+        106.819198
+      ],
+      "dest_hospital": "RSUD TAMANSARI",
+      "dest_hospital_id": "20",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 9730.1,
+      "path_coords_count": 389
+    },
+    {
+      "origin_node": 339940189,
+      "origin_coords": [
+        -6.1689576,
+        106.7629768
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 392728149,
+      "dest_coords": [
+        -6.14378899999999,
+        106.819198
+      ],
+      "dest_hospital": "RSUD TAMANSARI",
+      "dest_hospital_id": "20",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 6816.5,
+      "path_coords_count": 233
+    },
+    {
+      "origin_node": 5488014804,
+      "origin_coords": [
+        -6.2252408,
+        106.7048455
+      ],
+      "origin_kelurahan": "Karang Tengah",
+      "dest_node": 392728149,
+      "dest_coords": [
+        -6.14378899999999,
+        106.819198
+      ],
+      "dest_hospital": "RSUD TAMANSARI",
+      "dest_hospital_id": "20",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 15551.0,
+      "path_coords_count": 642
+    },
+    {
+      "origin_node": 410826756,
+      "origin_coords": [
+        -6.1502694,
+        106.7417996
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 3512199579,
+      "dest_coords": [
+        -6.152934,
+        106.712303
+      ],
+      "dest_hospital": "RS HERMINA DAAN MOGOT",
+      "dest_hospital_id": "22",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3274.4,
+      "path_coords_count": 142
+    },
+    {
+      "origin_node": 309733469,
+      "origin_coords": [
+        -6.2354126,
+        106.7910954
+      ],
+      "origin_kelurahan": "Kebayoran Baru",
+      "dest_node": 3512199579,
+      "dest_coords": [
+        -6.152934,
+        106.712303
+      ],
+      "dest_hospital": "RS HERMINA DAAN MOGOT",
+      "dest_hospital_id": "22",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 12648.2,
+      "path_coords_count": 441
+    },
+    {
+      "origin_node": 412057413,
+      "origin_coords": [
+        -6.1538429,
+        106.7878318
+      ],
+      "origin_kelurahan": "Grogol Petamburan",
+      "dest_node": 3512199579,
+      "dest_coords": [
+        -6.152934,
+        106.712303
+      ],
+      "dest_hospital": "RS HERMINA DAAN MOGOT",
+      "dest_hospital_id": "22",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 8350.6,
+      "path_coords_count": 255
+    },
+    {
+      "origin_node": 8505902055,
+      "origin_coords": [
+        -6.2492238,
+        106.7197138
+      ],
+      "origin_kelurahan": "Paninggilan",
+      "dest_node": 3512199579,
+      "dest_coords": [
+        -6.152934,
+        106.712303
+      ],
+      "dest_hospital": "RS HERMINA DAAN MOGOT",
+      "dest_hospital_id": "22",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 10738.2,
+      "path_coords_count": 623
+    },
+    {
+      "origin_node": 330016331,
+      "origin_coords": [
+        -6.2479705,
+        106.7920139
+      ],
+      "origin_kelurahan": "Kebayoran Baru",
+      "dest_node": 3512199579,
+      "dest_coords": [
+        -6.152934,
+        106.712303
+      ],
+      "dest_hospital": "RS HERMINA DAAN MOGOT",
+      "dest_hospital_id": "22",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 13759.3,
+      "path_coords_count": 459
+    },
+    {
+      "origin_node": 4974914765,
+      "origin_coords": [
+        -6.2033228,
+        106.7701176
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 193621912,
+      "dest_coords": [
+        -6.1995871,
+        106.8005392
+      ],
+      "dest_hospital": "RS BHAKTI MULIA",
+      "dest_hospital_id": "23",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3388.5,
+      "path_coords_count": 170
+    },
+    {
+      "origin_node": 6831024409,
+      "origin_coords": [
+        -6.1936732,
+        106.755665
+      ],
+      "origin_kelurahan": "Kembangan",
+      "dest_node": 193621912,
+      "dest_coords": [
+        -6.1995871,
+        106.8005392
+      ],
+      "dest_hospital": "RS BHAKTI MULIA",
+      "dest_hospital_id": "23",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5004.0,
+      "path_coords_count": 254
+    },
+    {
+      "origin_node": 410402278,
+      "origin_coords": [
+        -6.172291,
+        106.715132
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 193621912,
+      "dest_coords": [
+        -6.1995871,
+        106.8005392
+      ],
+      "dest_hospital": "RS BHAKTI MULIA",
+      "dest_hospital_id": "23",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 9917.4,
+      "path_coords_count": 576
+    },
+    {
+      "origin_node": 7244114045,
+      "origin_coords": [
+        -6.2253871,
+        106.7425089
+      ],
+      "origin_kelurahan": "Pesanggrahan",
+      "dest_node": 193621912,
+      "dest_coords": [
+        -6.1995871,
+        106.8005392
+      ],
+      "dest_hospital": "RS BHAKTI MULIA",
+      "dest_hospital_id": "23",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7027.1,
+      "path_coords_count": 377
+    },
+    {
+      "origin_node": 343091981,
+      "origin_coords": [
+        -6.1615565,
+        106.7418908
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 193621912,
+      "dest_coords": [
+        -6.1995871,
+        106.8005392
+      ],
+      "dest_hospital": "RS BHAKTI MULIA",
+      "dest_hospital_id": "23",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7740.7,
+      "path_coords_count": 450
+    },
+    {
+      "origin_node": 332541005,
+      "origin_coords": [
+        -6.1936272,
+        106.7827702
+      ],
+      "origin_kelurahan": "Palmerah",
+      "dest_node": 4974914742,
+      "dest_coords": [
+        -6.2030307,
+        106.7726845
+      ],
+      "dest_hospital": "RS ANGGREK MAS",
+      "dest_hospital_id": "24",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 1528.5,
+      "path_coords_count": 97
+    },
+    {
+      "origin_node": 5078300942,
+      "origin_coords": [
+        -6.2442097,
+        106.7579192
+      ],
+      "origin_kelurahan": "Petukangan Selatan",
+      "dest_node": 4974914742,
+      "dest_coords": [
+        -6.2030307,
+        106.7726845
+      ],
+      "dest_hospital": "RS ANGGREK MAS",
+      "dest_hospital_id": "24",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 4861.1,
+      "path_coords_count": 246
+    },
+    {
+      "origin_node": 10005488578,
+      "origin_coords": [
+        -6.2344867,
+        106.7075654
+      ],
+      "origin_kelurahan": "Sudimara Barat",
+      "dest_node": 4974914742,
+      "dest_coords": [
+        -6.2030307,
+        106.7726845
+      ],
+      "dest_hospital": "RS ANGGREK MAS",
+      "dest_hospital_id": "24",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 8003.1,
+      "path_coords_count": 490
+    },
+    {
+      "origin_node": 5388370900,
+      "origin_coords": [
+        -6.2325274,
+        106.7931443
+      ],
+      "origin_kelurahan": "Kebayoran Baru",
+      "dest_node": 4974914742,
+      "dest_coords": [
+        -6.2030307,
+        106.7726845
+      ],
+      "dest_hospital": "RS ANGGREK MAS",
+      "dest_hospital_id": "24",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3984.1,
+      "path_coords_count": 180
+    },
+    {
+      "origin_node": 5498155764,
+      "origin_coords": [
+        -6.2098087,
+        106.7273899
+      ],
+      "origin_kelurahan": "Kembangan",
+      "dest_node": 4974914742,
+      "dest_coords": [
+        -6.2030307,
+        106.7726845
+      ],
+      "dest_hospital": "RS ANGGREK MAS",
+      "dest_hospital_id": "24",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5063.4,
+      "path_coords_count": 249
+    },
+    {
+      "origin_node": 5057542281,
+      "origin_coords": [
+        -6.1697756,
+        106.7973046
+      ],
+      "origin_kelurahan": "Grogol Petamburan",
+      "dest_node": 5479251474,
+      "dest_coords": [
+        -6.1859889,
+        106.7353186
+      ],
+      "dest_hospital": "RSU PONDOK INDAH PURI INDAH",
+      "dest_hospital_id": "26",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7085.7,
+      "path_coords_count": 350
+    },
+    {
+      "origin_node": 1710896069,
+      "origin_coords": [
+        -6.2479924,
+        106.776572
+      ],
+      "origin_kelurahan": "Kebayoran Lama",
+      "dest_node": 5479251474,
+      "dest_coords": [
+        -6.1859889,
+        106.7353186
+      ],
+      "dest_hospital": "RSU PONDOK INDAH PURI INDAH",
+      "dest_hospital_id": "26",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 8266.1,
+      "path_coords_count": 400
+    },
+    {
+      "origin_node": 4295053608,
+      "origin_coords": [
+        -6.2042849,
+        106.7055954
+      ],
+      "origin_kelurahan": "Pondok Bahar",
+      "dest_node": 5479251474,
+      "dest_coords": [
+        -6.1859889,
+        106.7353186
+      ],
+      "dest_hospital": "RSU PONDOK INDAH PURI INDAH",
+      "dest_hospital_id": "26",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3864.6,
+      "path_coords_count": 188
+    },
+    {
+      "origin_node": 6280206199,
+      "origin_coords": [
+        -6.2352417,
+        106.726063
+      ],
+      "origin_kelurahan": "Larangan Utara",
+      "dest_node": 5479251474,
+      "dest_coords": [
+        -6.1859889,
+        106.7353186
+      ],
+      "dest_hospital": "RSU PONDOK INDAH PURI INDAH",
+      "dest_hospital_id": "26",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5571.4,
+      "path_coords_count": 360
+    },
+    {
+      "origin_node": 391369099,
+      "origin_coords": [
+        -6.1438014,
+        106.7514117
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 5479251474,
+      "dest_coords": [
+        -6.1859889,
+        106.7353186
+      ],
+      "dest_hospital": "RSU PONDOK INDAH PURI INDAH",
+      "dest_hospital_id": "26",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5017.1,
+      "path_coords_count": 303
+    },
+    {
+      "origin_node": 5487878658,
+      "origin_coords": [
+        -6.2256443,
+        106.7586587
+      ],
+      "origin_kelurahan": "Pesanggrahan",
+      "dest_node": 411669263,
+      "dest_coords": [
+        -6.1683669,
+        106.7651412
+      ],
+      "dest_hospital": "RS EMC GRHA KEDOYA",
+      "dest_hospital_id": "27",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 6409.1,
+      "path_coords_count": 296
+    },
+    {
+      "origin_node": 9676152756,
+      "origin_coords": [
+        -6.2037942,
+        106.7356047
+      ],
+      "origin_kelurahan": "Kembangan",
+      "dest_node": 411669263,
+      "dest_coords": [
+        -6.1683669,
+        106.7651412
+      ],
+      "dest_hospital": "RS EMC GRHA KEDOYA",
+      "dest_hospital_id": "27",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5116.6,
+      "path_coords_count": 237
+    },
+    {
+      "origin_node": 6425324774,
+      "origin_coords": [
+        -6.1436504,
+        106.7862091
+      ],
+      "origin_kelurahan": "Grogol Petamburan",
+      "dest_node": 411669263,
+      "dest_coords": [
+        -6.1683669,
+        106.7651412
+      ],
+      "dest_hospital": "RS EMC GRHA KEDOYA",
+      "dest_hospital_id": "27",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3602.5,
+      "path_coords_count": 135
+    },
+    {
+      "origin_node": 4294586794,
+      "origin_coords": [
+        -6.2022885,
+        106.702458
+      ],
+      "origin_kelurahan": "Pondok Bahar",
+      "dest_node": 411669263,
+      "dest_coords": [
+        -6.1683669,
+        106.7651412
+      ],
+      "dest_hospital": "RS EMC GRHA KEDOYA",
+      "dest_hospital_id": "27",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7889.5,
+      "path_coords_count": 448
+    },
+    {
+      "origin_node": 4905120177,
+      "origin_coords": [
+        -6.171334,
+        106.7082587
+      ],
+      "origin_kelurahan": "Kalideres",
+      "dest_node": 411669263,
+      "dest_coords": [
+        -6.1683669,
+        106.7651412
+      ],
+      "dest_hospital": "RS EMC GRHA KEDOYA",
+      "dest_hospital_id": "27",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 6297.1,
+      "path_coords_count": 464
+    },
+    {
+      "origin_node": 8653804312,
+      "origin_coords": [
+        -6.1614863,
+        106.76064
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 1709783083,
+      "dest_coords": [
+        -6.19731160000001,
+        106.7926441
+      ],
+      "dest_hospital": "RSU PATRIA IKKT",
+      "dest_hospital_id": "29",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5327.9,
+      "path_coords_count": 250
+    },
+    {
+      "origin_node": 332542359,
+      "origin_coords": [
+        -6.1927512,
+        106.7832403
+      ],
+      "origin_kelurahan": "Palmerah",
+      "dest_node": 1709783083,
+      "dest_coords": [
+        -6.19731160000001,
+        106.7926441
+      ],
+      "dest_hospital": "RSU PATRIA IKKT",
+      "dest_hospital_id": "29",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 1156.6,
+      "path_coords_count": 129
+    },
+    {
+      "origin_node": 331983205,
+      "origin_coords": [
+        -6.1743593,
+        106.7749665
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 1709783083,
+      "dest_coords": [
+        -6.19731160000001,
+        106.7926441
+      ],
+      "dest_hospital": "RSU PATRIA IKKT",
+      "dest_hospital_id": "29",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3214.4,
+      "path_coords_count": 181
+    },
+    {
+      "origin_node": 7137133544,
+      "origin_coords": [
+        -6.1378893,
+        106.7344281
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 1709783083,
+      "dest_coords": [
+        -6.19731160000001,
+        106.7926441
+      ],
+      "dest_hospital": "RSU PATRIA IKKT",
+      "dest_hospital_id": "29",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 9223.8,
+      "path_coords_count": 442
+    },
+    {
+      "origin_node": 5078317855,
+      "origin_coords": [
+        -6.2484693,
+        106.7534792
+      ],
+      "origin_kelurahan": "Petukangan Selatan",
+      "dest_node": 1709783083,
+      "dest_coords": [
+        -6.19731160000001,
+        106.7926441
+      ],
+      "dest_hospital": "RSU PATRIA IKKT",
+      "dest_hospital_id": "29",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7148.5,
+      "path_coords_count": 441
+    },
+    {
+      "origin_node": 331967942,
+      "origin_coords": [
+        -6.1537945,
+        106.775516
+      ],
+      "origin_kelurahan": "Grogol Petamburan",
+      "dest_node": 5032149108,
+      "dest_coords": [
+        -6.1665351,
+        106.7852311
+      ],
+      "dest_hospital": "RSU ROYAL TARUMA",
+      "dest_hospital_id": "30",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 1777.8,
+      "path_coords_count": 108
+    },
+    {
+      "origin_node": 332540975,
+      "origin_coords": [
+        -6.1942458,
+        106.7838364
+      ],
+      "origin_kelurahan": "Palmerah",
+      "dest_node": 5032149108,
+      "dest_coords": [
+        -6.1665351,
+        106.7852311
+      ],
+      "dest_hospital": "RSU ROYAL TARUMA",
+      "dest_hospital_id": "30",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3085.1,
+      "path_coords_count": 135
+    },
+    {
+      "origin_node": 4295053381,
+      "origin_coords": [
+        -6.1959806,
+        106.7094378
+      ],
+      "origin_kelurahan": "Petir",
+      "dest_node": 5032149108,
+      "dest_coords": [
+        -6.1665351,
+        106.7852311
+      ],
+      "dest_hospital": "RSU ROYAL TARUMA",
+      "dest_hospital_id": "30",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 8995.8,
+      "path_coords_count": 507
+    },
+    {
+      "origin_node": 410818953,
+      "origin_coords": [
+        -6.1512232,
+        106.7332437
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 5032149108,
+      "dest_coords": [
+        -6.1665351,
+        106.7852311
+      ],
+      "dest_hospital": "RSU ROYAL TARUMA",
+      "dest_hospital_id": "30",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5994.3,
+      "path_coords_count": 240
+    },
+    {
+      "origin_node": 332523253,
+      "origin_coords": [
+        -6.1902348,
+        106.77717
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 5032149108,
+      "dest_coords": [
+        -6.1665351,
+        106.7852311
+      ],
+      "dest_hospital": "RSU ROYAL TARUMA",
+      "dest_hospital_id": "30",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 2781.9,
+      "path_coords_count": 127
+    },
+    {
+      "origin_node": 3662761666,
+      "origin_coords": [
+        -6.1996629,
+        106.7258645
+      ],
+      "origin_kelurahan": "Kembangan",
+      "dest_node": 343340340,
+      "dest_coords": [
+        -6.19372297209621,
+        106.739964120902
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Kembangan",
+      "dest_hospital_id": "33",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 1692.8,
+      "path_coords_count": 84
+    },
+    {
+      "origin_node": 1709483504,
+      "origin_coords": [
+        -6.1452765,
+        106.74558
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 343340340,
+      "dest_coords": [
+        -6.19372297209621,
+        106.739964120902
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Kembangan",
+      "dest_hospital_id": "33",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5422.7,
+      "path_coords_count": 297
+    },
+    {
+      "origin_node": 13088719402,
+      "origin_coords": [
+        -6.2120523,
+        106.7141853
+      ],
+      "origin_kelurahan": "Karang Tengah",
+      "dest_node": 343340340,
+      "dest_coords": [
+        -6.19372297209621,
+        106.739964120902
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Kembangan",
+      "dest_hospital_id": "33",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3503.5,
+      "path_coords_count": 199
+    },
+    {
+      "origin_node": 349025867,
+      "origin_coords": [
+        -6.1581668,
+        106.7962155
+      ],
+      "origin_kelurahan": "Grogol Petamburan",
+      "dest_node": 343340340,
+      "dest_coords": [
+        -6.19372297209621,
+        106.739964120902
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Kembangan",
+      "dest_hospital_id": "33",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7369.0,
+      "path_coords_count": 185
+    },
+    {
+      "origin_node": 1709453711,
+      "origin_coords": [
+        -6.2261927,
+        106.7415427
+      ],
+      "origin_kelurahan": "Pesanggrahan",
+      "dest_node": 343340340,
+      "dest_coords": [
+        -6.19372297209621,
+        106.739964120902
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Kembangan",
+      "dest_hospital_id": "33",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 3614.7,
+      "path_coords_count": 153
+    },
+    {
+      "origin_node": 409554708,
+      "origin_coords": [
+        -6.1519471,
+        106.7190487
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 3912703638,
+      "dest_coords": [
+        -6.14963014678317,
+        106.701584257743
+      ],
+      "dest_hospital": "RS MITRA KELUARGA KALIDERES",
+      "dest_hospital_id": "34",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 1947.9,
+      "path_coords_count": 134
+    },
+    {
+      "origin_node": 391367113,
+      "origin_coords": [
+        -6.1457955,
+        106.7450907
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 3912703638,
+      "dest_coords": [
+        -6.14963014678317,
+        106.701584257743
+      ],
+      "dest_hospital": "RS MITRA KELUARGA KALIDERES",
+      "dest_hospital_id": "34",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 4828.7,
+      "path_coords_count": 225
+    },
+    {
+      "origin_node": 332515676,
+      "origin_coords": [
+        -6.1852302,
+        106.7872944
+      ],
+      "origin_kelurahan": "Palmerah",
+      "dest_node": 3912703638,
+      "dest_coords": [
+        -6.14963014678317,
+        106.701584257743
+      ],
+      "dest_hospital": "RS MITRA KELUARGA KALIDERES",
+      "dest_hospital_id": "34",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 10269.0,
+      "path_coords_count": 431
+    },
+    {
+      "origin_node": 410402223,
+      "origin_coords": [
+        -6.1696236,
+        106.7153867
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 3912703638,
+      "dest_coords": [
+        -6.14963014678317,
+        106.701584257743
+      ],
+      "dest_hospital": "RS MITRA KELUARGA KALIDERES",
+      "dest_hospital_id": "34",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 2696.5,
+      "path_coords_count": 232
+    },
+    {
+      "origin_node": 5078270087,
+      "origin_coords": [
+        -6.2189207,
+        106.7785444
+      ],
+      "origin_kelurahan": "Kebayoran Lama",
+      "dest_node": 3912703638,
+      "dest_coords": [
+        -6.14963014678317,
+        106.701584257743
+      ],
+      "dest_hospital": "RS MITRA KELUARGA KALIDERES",
+      "dest_hospital_id": "34",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 11478.0,
+      "path_coords_count": 406
+    },
+    {
+      "origin_node": 5507280105,
+      "origin_coords": [
+        -6.1817208,
+        106.7858828
+      ],
+      "origin_kelurahan": "Grogol Petamburan",
+      "dest_node": 332542712,
+      "dest_coords": [
+        -6.20810648869478,
+        106.788890633831
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Palmerah",
+      "dest_hospital_id": "37",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 2952.7,
+      "path_coords_count": 158
+    },
+    {
+      "origin_node": 5439448332,
+      "origin_coords": [
+        -6.2429015,
+        106.7059619
+      ],
+      "origin_kelurahan": "Paninggilan Utara",
+      "dest_node": 332542712,
+      "dest_coords": [
+        -6.20810648869478,
+        106.788890633831
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Palmerah",
+      "dest_hospital_id": "37",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 9949.9,
+      "path_coords_count": 586
+    },
+    {
+      "origin_node": 4443172634,
+      "origin_coords": [
+        -6.1608964,
+        106.7204217
+      ],
+      "origin_kelurahan": "Cengkareng",
+      "dest_node": 332542712,
+      "dest_coords": [
+        -6.20810648869478,
+        106.788890633831
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Palmerah",
+      "dest_hospital_id": "37",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 9211.3,
+      "path_coords_count": 457
+    },
+    {
+      "origin_node": 3662761660,
+      "origin_coords": [
+        -6.1986082,
+        106.7244283
+      ],
+      "origin_kelurahan": "Kembangan",
+      "dest_node": 332542712,
+      "dest_coords": [
+        -6.20810648869478,
+        106.788890633831
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Palmerah",
+      "dest_hospital_id": "37",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7203.8,
+      "path_coords_count": 328
+    },
+    {
+      "origin_node": 3577963572,
+      "origin_coords": [
+        -6.1897105,
+        106.7940649
+      ],
+      "origin_kelurahan": "Palmerah",
+      "dest_node": 332542712,
+      "dest_coords": [
+        -6.20810648869478,
+        106.788890633831
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Palmerah",
+      "dest_hospital_id": "37",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 2124.0,
+      "path_coords_count": 171
+    },
+    {
+      "origin_node": 340164928,
+      "origin_coords": [
+        -6.1789903,
+        106.7636065
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 392728149,
+      "dest_coords": [
+        -6.14506136060458,
+        106.817448009324
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Taman Sari",
+      "dest_hospital_id": "40",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7047.2,
+      "path_coords_count": 284
+    },
+    {
+      "origin_node": 10112427857,
+      "origin_coords": [
+        -6.2285336,
+        106.7199294
+      ],
+      "origin_kelurahan": "Sudimara Timur",
+      "dest_node": 392728149,
+      "dest_coords": [
+        -6.14506136060458,
+        106.817448009324
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Taman Sari",
+      "dest_hospital_id": "40",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 14225.6,
+      "path_coords_count": 660
+    },
+    {
+      "origin_node": 6285373420,
+      "origin_coords": [
+        -6.2144085,
+        106.7145154
+      ],
+      "origin_kelurahan": "Karang Tengah",
+      "dest_node": 392728149,
+      "dest_coords": [
+        -6.14506136060458,
+        106.817448009324
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Taman Sari",
+      "dest_hospital_id": "40",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 13745.7,
+      "path_coords_count": 614
+    },
+    {
+      "origin_node": 5465845184,
+      "origin_coords": [
+        -6.1648645,
+        106.7673751
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 392728149,
+      "dest_coords": [
+        -6.14506136060458,
+        106.817448009324
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Taman Sari",
+      "dest_hospital_id": "40",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 5957.6,
+      "path_coords_count": 205
+    },
+    {
+      "origin_node": 6395290962,
+      "origin_coords": [
+        -6.1927499,
+        106.7159923
+      ],
+      "origin_kelurahan": "Parung Jaya",
+      "dest_node": 392728149,
+      "dest_coords": [
+        -6.14506136060458,
+        106.817448009324
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Taman Sari",
+      "dest_hospital_id": "40",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 12406.4,
+      "path_coords_count": 562
+    },
+    {
+      "origin_node": 4916416338,
+      "origin_coords": [
+        -6.1551336,
+        106.7145764
+      ],
+      "origin_kelurahan": "Kalideres",
+      "dest_node": 5479317550,
+      "dest_coords": [
+        -6.19900291333323,
+        106.765286656165
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Kebon Jeruk",
+      "dest_hospital_id": "54",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 7431.2,
+      "path_coords_count": 377
+    },
+    {
+      "origin_node": 104363770,
+      "origin_coords": [
+        -6.1790101,
+        106.7971931
+      ],
+      "origin_kelurahan": "Palmerah",
+      "dest_node": 5479317550,
+      "dest_coords": [
+        -6.19900291333323,
+        106.765286656165
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Kebon Jeruk",
+      "dest_hospital_id": "54",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 4169.3,
+      "path_coords_count": 152
+    },
+    {
+      "origin_node": 332521949,
+      "origin_coords": [
+        -6.1942232,
+        106.7919299
+      ],
+      "origin_kelurahan": "Palmerah",
+      "dest_node": 5479317550,
+      "dest_coords": [
+        -6.19900291333323,
+        106.765286656165
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Kebon Jeruk",
+      "dest_hospital_id": "54",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 2992.9,
+      "path_coords_count": 175
+    },
+    {
+      "origin_node": 5413652085,
+      "origin_coords": [
+        -6.1421887,
+        106.7789138
+      ],
+      "origin_kelurahan": "Penjaringan",
+      "dest_node": 5479317550,
+      "dest_coords": [
+        -6.19900291333323,
+        106.765286656165
+      ],
+      "dest_hospital": "Puskesmas Kecamatan Kebon Jeruk",
+      "dest_hospital_id": "54",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 6494.6,
+      "path_coords_count": 312
+    },
+    {
+      "origin_node": 8505902055,
+      "origin_coords": [
+        -6.2492238,
+        106.7197138
+      ],
+      "origin_kelurahan": "Paninggilan",
+      "dest_node": 5006207170,
+      "dest_coords": [
+        -6.18518826711524,
+        106.780669770485
+      ],
+      "dest_hospital": "RS UKRIDA",
+      "dest_hospital_id": "57",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 9803.2,
+      "path_coords_count": 586
+    },
+    {
+      "origin_node": 4974914776,
+      "origin_coords": [
+        -6.2040329,
+        106.7701759
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 5006207170,
+      "dest_coords": [
+        -6.18518826711524,
+        106.780669770485
+      ],
+      "dest_hospital": "RS UKRIDA",
+      "dest_hospital_id": "57",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 2395.1,
+      "path_coords_count": 189
+    },
+    {
+      "origin_node": 1709782737,
+      "origin_coords": [
+        -6.1927452,
+        106.7940956
+      ],
+      "origin_kelurahan": "Palmerah",
+      "dest_node": 5006207170,
+      "dest_coords": [
+        -6.18518826711524,
+        106.780669770485
+      ],
+      "dest_hospital": "RS UKRIDA",
+      "dest_hospital_id": "57",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 1705.5,
+      "path_coords_count": 156
+    },
+    {
+      "origin_node": 6445034690,
+      "origin_coords": [
+        -6.1724782,
+        106.765665
+      ],
+      "origin_kelurahan": "Kebon Jeruk",
+      "dest_node": 5006207170,
+      "dest_coords": [
+        -6.18518826711524,
+        106.780669770485
+      ],
+      "dest_hospital": "RS UKRIDA",
+      "dest_hospital_id": "57",
+      "dest_city": "West Jakarta",
+      "straight_line_m": 2179.2,
+      "path_coords_count": 114
+    }
+  ]
+}

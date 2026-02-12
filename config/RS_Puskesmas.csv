@@ -1,0 +1,59 @@
+fid,osm_type,healthcare,healthcare speciality,operator type,operator,address full,opening_hours,name,postcode,city,insurance,subdistrict,longitude,latitude
+10,node,community health center,general,government,Dept. of Health,Jalan Krendang Utara No 4,24 hours,Puskesmas Kecamatan Tambora,"11260",West Jakarta,BPJS,Krendang,106.8046336,-6.14815250000001
+13,node,hospital,,government,Ministry of Health,"l. Puri Indah Raya Blok S-2, RT.1/RW.2",24 hours,RSUD CENGKARENG,,West Jakarta,BPJS,,106.7349086,-6.1428787
+14,node,hospital,,government,Ministry of Health,"Jl. Kyai Tapa No.1, RT.10/RW.10, Tomang",24 hours,RSU SUMBER WARAS,,West Jakarta,BPJS,,106.7976264,-6.1686623
+15,node,hospital,,government,Ministry of Health,Jl. Bedugul,24 hours,RSUD KALIDERES,"11840",West Jakarta,BPJS,,106.7082289,-6.1461812
+16,node,hospital,,government,Ministry of Health,"Jl. Topas Raya No.3, RT.15/RW.7",24 hours,RSUD KEMBANGAN,,West Jakarta,,,106.736305,-6.1946632
+18,node,hospital,,private,LIPPPO GROUP,Jl. Perjuangan No.Kav.8,24 hours,RS SILOAM KEBON JERUK,,West Jakarta,BPJS,Kb. Jeruk,106.7637229,-6.1908388
+19,node,hospital,,private,RS MEDIKA PERMATA HIJAU,"Jalan Raya Kebayoran Lama, RT.6/RW.8",24 hours,RS EKA PERMATA HIJAU,"11560",West Jakarta,BPJS,Sukabumi Sel.,106.778025,-6.2181713
+20,node,hospital,,government,Ministry of Health,"Jl. Madu No.10A 8, RT.2/RW.3",24 hours,RSUD TAMANSARI,,West Jakarta,BPJS,,106.819198,-6.14378899999999
+21,node,hospital,,private,CIPUTRA,Jl. Boulevard Blok G1 Citra 5,24 hours,RS CIPUTRA CITRA GARDEN CITY,"11830",West Jakarta,BPJS,Pegadungan,106.704998,-6.12308939999999
+22,node,hospital,,private,RS HERMINA DAAN MOGOT,"Jl. Kintamani Raya No.2, RT.1/RW.12",24 hours,RS HERMINA DAAN MOGOT,"11840",West Jakarta,BPJS,Kalideres,106.712303,-6.152934
+23,node,hospital,,private,JAYAKARTA MEDIKA BHAKTI,"Jl. K.S. Tubun No.79 9, RT.9/RW.5",24 hours,RS BHAKTI MULIA,"11410",West Jakarta,BPJS,Slipi,106.8005392,-6.1995871
+24,node,hospital,,private,SANUSI MANDIRI,"Jl. Anggrek No.2B, RT.9/RW.2",24 hours,RS ANGGREK MAS,"11550",West Jakarta,BPJS,Klp. Dua,106.7726845,-6.2030307
+25,node,hospital,,private,BUMN,"Jl. K.S. Tubun No.92 - 94, RT.10/RW.1",24 hours,RS PELNI PETAMBURAN,"11410",West Jakarta,BPJS,,106.8036904,-6.1931924
+26,node,hospital,,private,PONDOK INDAH GROUP,"l. Puri Indah Raya Blok S-2, RT.1/RW.2",24 hours,RSU PONDOK INDAH PURI INDAH,"11610",West Jakarta,BPJS,,106.7353186,-6.1859889
+27,node,hospital,,private,RS GRHA KEDOYA,"Jl. Panjang No.26, RT.15/RW.7",24 hours,RS EMC GRHA KEDOYA,"11520",West Jakarta,BPJS,Kedoya Utara,106.7651412,-6.1683669
+29,node,hospital,,private,IKKT,"Komplek Kemhan TNI Slipi, Kel, Jl. Cendrawasih No.1, RT.5/RW.2",24 hours,RSU PATRIA IKKT,"11480",West Jakarta,BPJS,,106.7926441,-6.19731160000001
+30,node,hospital,,private,TARUMA BHAKTI,"Jl. Daan Mogot No.34, RT.8/RW.1",24 hours,RSU ROYAL TARUMA,"11470",West Jakarta,BPJS,,106.7852311,-6.1665351
+33,node,community health center,general,government,Dept. of Health,"Jl. Kembangan Raya No.52, RT 001 RW 03",24 hours,Puskesmas Kecamatan Kembangan,,West Jakarta,BPJS,,106.739964120902,-6.19372297209621
+34,node,hospital,,private,RS MITRA KELUARGA KALIDERES,Jalan Peta Selatan,24 hours,RS MITRA KELUARGA KALIDERES,"11840",West Jakarta,BPJS,Kalideres,106.701584257743,-6.14963014678317
+37,node,community health center,general,government,Dept. of Health,Jl. Palmerah Barat No. 120,24 hours,Puskesmas Kecamatan Palmerah,"11480",West Jakarta,BPJS,,106.788890633831,-6.20810648869478
+40,node,community health center,general,government,Dept. of Health,Jl. Blustru No. 1,24 hours,Puskesmas Kecamatan Taman Sari,"11180",West Jakarta,BPJS,Mangga Besar,106.817448009324,-6.14506136060458
+54,node,community health center,general,government,Dept. of Health,Jl. Kebon Jeruk No. 2 RT 09 RW 01,24 hours,Puskesmas Kecamatan Kebon Jeruk,,West Jakarta,BPJS,,106.765286656165,-6.19900291333323
+57,node,hospital,,private,PRIMAYA,"Jl. Arjuna Utara No.6, RT.6/RW.2",24 hours,RS UKRIDA,"11510",West Jakarta,BPJS,,106.780669770485,-6.18518826711524
+62,node,community health center,general,government,Dept. of Health,Jl. Raya Kamal No. 2,24 hours,Puskesmas Kecamatan Cengkareng,,West Jakarta,BPJS,,106.728401153224,-6.14429024049017
+69,node,community health center,general,government,Dept. of Health,Jl. Tanjung Pura No. 14 RT 006 RW 05. Pegadungan,24 hours,Puskesmas Kecamatan Kalideres,,West Jakarta,BPJS,,106.69642144108,-6.1300847493473
+74,node,hospital,general,private,BUDDHA FOUNDATION,Jl. Kamal Raya Outer Ring Road,24 hours,RS CINTA KASIH TZU CHI,"11730",West Jakarta,BPJS,Cengkareng Tim.,106.737093761751,-6.13204728281446
+85,node,hospital,,private,RADJAK,Jl. Daan Mogot KM. 17 Kompleks Imperial Business Center Blok A No. 1-10,24 hours,RS DR. ABDUL RADJAK,"11840",West Jakarta,BPJS,,106.696461458041,-6.1589275983962
+90,node,community health center,general,government,Dept. of Health,"Jl. Wijaya 1 (Taman Duta Mas) Jl. Wijaya III No.14, RT.14/RW.9",24 hours,Puskesmas Kecamatan Grogol Petamburan,"11460",West Jakarta,BPJS,,106.776817255693,-6.14969382400756
+91,node,hospital,,private,Atma Jaya Foundation,"Jl. Pluit Raya No.2 21, RT.7/RW.8",24 hours,RS ATMA JAYA,"14440",North Jakarta,BPJS,Penjaringan,106.7926902,-6.1264458
+92,node,hospital,,private,Saranaduta Jasamedika,Jl. Pluit Sel. No.2,24 hours,RS PLUIT,"14440",North Jakarta,BPJS,Pluit,106.7994919,-6.12572959999999
+93,node,hospital,,private,Mandaramedika Utama,Jl. Pantai Indah Utara 3,24 hours,RSU PANTAI INDAH KAPUK,"14460",North Jakarta,BPJS,,106.7527392,-6.11188980000001
+94,node,hospital,,private,Duta Indah Medika,"Jl. Teluk Gong Raya No.12, RT.5/RW.17",24 hours,RS DUTA INDAH,"14450",North Jakarta,BPJS,Pejagalan,106.7837975,-6.13841329999999
+95,node,hospital,,government,Ministry of Health,"Jl. Bugis No.3, RT.1/RW.4",24 hours,RSUD TANJUNG PRIOK,"14320",North Jakarta,BPJS,,106.8888254,-6.116082
+96,node,hospital,,private,Indonesia Healthcare Corporation,"Jl. Enggano No.10, RT.7/RW.16",24 hours,RSU PORT MEDICAL CENTER,"14310",North Jakarta,BPJS,,106.8893777,-6.1103582
+97,node,hospital,,private,Sismadi Group,"Jl. Tawes No.18-20, RT.4/RW.8",24 hours,RS SUKMUL SISMA MEDIKA,"14310",North Jakarta,BPJS,Tj. Priok,106.8820012,-6.11207209999999
+98,node,hospital,,private,Private,"Jl. Danau Sunter Utara Jl. Paradise 11 No.1-5, Sunter Agung",24 hours,RS ROYAL PROGRESS,"14350",North Jakarta,BPJS,Sunter Agung,106.865455,-6.1394322
+99,node,hospital,,private,Medikaloka Hermina Tbk,"Blok E 3, Jl. Danau Agung 2 No.28 - 30",24 hours,RS HERMINA PODOMORO,"14350",North Jakarta,BPJS,Sunter Agung,106.8613627,-6.1455694
+100,node,hospital,,private,El-Shaddai Anugerah Abadi,"Jl. Sungai Bambu No.5, RT.5/RW.9",24 hours,RS PURI MEDIKA,"14330",North Jakarta,BPJS,Sungai Bambu,106.890191,-6.1291818
+101,node,hospital,,private,Private,Jl. Agung Utara Raya Blok A No.1,24 hours,RS SATYA NEGARA,"14350",North Jakarta,BPJS,Sunter,106.8615552,-6.1388457
+102,node,hospital,,government,Ministry of Health,"Jl. Deli No.4, RT.11/RW.7",24 hours,RSUD KOJA,"14220",North Jakarta,BPJS,,106.8996682,-6.1089322
+103,node,hospital,,,Indonesia Healthcare Corporation,"Jl. Kramat Jaya Raya No.1, RT.7/RW.14",24 hours,RS PELABUHAN JAKARTA,"14260",North Jakarta,BPJS,Tugu Utara,106.9178262,-6.12492020000001
+104,node,hospital,,government,Ministry of Health,Jl. Walang Permai No.39,24 hours,RSUD TUGU KOJA,"14260",North Jakarta,BPJS,,106.906859,-6.1274896
+105,node,hospital,,,Mulyasari Medical,"Jl. Plumpang Semper No.19 6, RT.6/RW.12",24 hours,RS MULYASARI,"14260",North Jakarta,BPJS,Tugu Utara,106.9064976,-6.1290752
+106,node,hospital,,,Prisindo Mitra Utama,"Komplek Bea Cukai, Jl. Siak No.J 5 12",24 hours,RS FIRDAUS,"14140",North Jakarta,BPJS,Sukapura,106.923068,-6.156138
+107,node,hospital,,,Muhammadiyah,Jl. Tipar Cakung No.5,24 hours,RS ISLAM JAKARTA SUKAPURA,"14140",North Jakarta,BPJS,Sukapura,106.9208253,-6.1397437
+108,node,hospital,,,KBN,"Jl. Tipar Cakung No.46, RT.2/RW.1",24 hours,RSU PEKERJA,"14140",North Jakarta,BPJS,,106.9232026,-6.145254
+110,node,community health center,general,government,Dept. of Health,Rusunawa Marunda Cluster B Blok 8,24 hours,Puskesmas Kecamatan Cilincing Rusunawa Marunda,"14150",North Jakarta,BPJS,,106.964339,-6.0944461
+111,node,hospital,,government,Ministry of Health,"Jl. Madya Kebantenan No.44, RT.4/RW.2",24 hours,RSUD CILINCING,"14130",North Jakarta,BPJS,,106.9262566,-6.112986
+112,node,hospital,,government,Ministry of Health,"Jl. Budi Mulia No.2, RW.11",24 hours,RSUD PADEMANGAN,"14420",North Jakarta,BPJS,,106.8402507,-6.13283080000001
+113,node,hospital,,,Gading Pluit Jasa Medika,Jl. Boulevard Timur,24 hours,RSU GADING PLUIT,"14250",North Jakarta,BPJS,,106.9159241,-6.16609299999999
+114,node,hospital,,,Mitra Keluarga Karyasehat Tbk,"Jl. Raya Gading Kirana No.2, RT.18/RW.8",24 hours,RS MITRA KELUARGA,"14240",North Jakarta,BPJS,Klp. Gading Bar.,106.89704,-6.15181389999999
+118,node,community health center,general,government,Dept. of Health,"Jl. Teluk Gong Raya No.2 8, RT.8/RW.10",24 hours,Puskesmas Kecamatan Penjaringan,"14450",North Jakarta,BPJS,Pejagalan,106.780931675946,-6.1379545517589
+120,node,community health center,general,government,Dept. of Health,"Gg. 22 No.2, RT.2/RW.2",24 hours,Puskesmas Kecamatan Pademangan,"14410",North Jakarta,BPJS,Pademangan Tim.,106.843680184231,-6.13668246608671
+125,node,community health center,general,government,Dept. of Health,"Jl. Raya Pelepah Indah Blok HF 7, RT.4/RW.7",24 hours,Puskesmas Kecamatan Kelapa Gading,"14240",North Jakarta,BPJS,,106.904536469513,-6.15575798025033
+127,node,community health center,general,government,Dept. of Health,"Jl. Mahoni No.9, RT.9/RW.5",24 hours,Puskesmas Kecamatan Koja,"14260",North Jakarta,BPJS,Tugu Utara,106.91347120887,-6.12191582629419
+131,node,community health center,general,government,Dept. of Health,"Jl. Sungai Landak No.26, RT.11/RW.8",24 hours,Puskesmas Kecamatan Cilincing,"14120",North Jakarta,BPJS,Cilincing,106.939801738519,-6.1038071540046
+146,node,hospital,,private,Buddhist Foundation,"Jl. Pantai Indah Kapuk, RT.6/RW.2",24 hours,RS TZU CHI HOSPITAL,"14470",North Jakarta,BPJS,,106.739086777414,-6.10612741665222
+147,,community health center,general,government,Dept. of Health,"Jl. Papanggo 2B No.69, RT.6/RW.3",24 hours,Puskesmas Kecamatan Tanjung Priok,"14340",North Jakarta,BPJS,Papanggo,106.878802714902,-6.12721220008498

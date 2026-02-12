@@ -157,8 +157,10 @@ class GMapsScraper:
         # Reset captured data
         self._captured_api_data = None
 
-        # Build URL with departure time if provided
-        url = f"https://www.google.com/maps/dir/{origin_str}/{dest_str}"
+        # Build URL with driving mode and departure time
+        # Travel mode codes: !3e0 = driving, !3e1 = bicycling,
+        #                     !3e2 = walking,  !3e3 = transit
+        url = f"https://www.google.com/maps/dir/{origin_str}/{dest_str}/data=!4m2!4m1!3e0"
         if departure_time:
             timestamp = int(departure_time.timestamp())
             url += f"?departure_time={timestamp}"

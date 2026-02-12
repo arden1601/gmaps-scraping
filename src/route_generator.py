@@ -51,33 +51,58 @@ class RouteGenerator:
 
         return intersections
 
+    @staticmethod
+    def _haversine_distance_m(lat1, lon1, lat2, lon2) -> float:
+        """Straight-line distance in meters between two lat/lon points."""
+        import math
+        R = 6_371_000  # Earth radius in meters
+        phi1, phi2 = math.radians(lat1), math.radians(lat2)
+        dphi = math.radians(lat2 - lat1)
+        dlam = math.radians(lon2 - lon1)
+        a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlam / 2) ** 2
+        return 2 * R * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
     def _sample_nearby_intersections(
         self,
         intersections: List[Tuple[int, Dict]],
-        max_neighbors: int = 50
+        max_neighbors: int = 50,
+        min_distance_m: float = 300,
     ) -> List[Dict]:
         """
-        Sample intersections and find only nearby connections
+        Sample intersections and find nearby connections that are far
+        enough apart to produce meaningful Google Maps durations.
 
         This avoids O(n²) problem by limiting each node
-        to only connect to nearby intersections.
+        to only connect to nearby intersections, while filtering out
+        pairs that are too close (where Google Maps 1-minute rounding
+        would dominate the result).
+
+        Args:
+            intersections: List of (node_id, attrs) tuples
+            max_neighbors: Max connections per node
+            min_distance_m: Minimum straight-line distance between
+                            origin and destination (meters). Routes
+                            shorter than this are skipped because
+                            Google Maps rounds durations to 1 minute,
+                            making speed calculations unreliable.
         """
         route_queue = []
         connected_pairs = set()
         intersection_set = {n for n, _ in intersections}
         intersection_attrs = {n: attrs for n, attrs in intersections}
+        skipped_too_close = 0
 
         for i, (node, attrs) in enumerate(intersections):
             if self.max_routes and len(route_queue) >= self.max_routes:
                 break
 
-            # Find neighbors within 2-3 hops
+            # Find neighbors within 10 hops (wider reach for longer routes)
             nearby_nodes = []
             try:
                 neighbors = nx.single_source_shortest_path_length(
                     self.graph,
                     source=node,
-                    cutoff=3,
+                    cutoff=10,
                 )
                 for neighbor in neighbors.keys():
                     if neighbor != node and neighbor in intersection_set:
@@ -92,19 +117,32 @@ class RouteGenerator:
 
                 pair_id = tuple(sorted([node, target]))
                 if pair_id not in connected_pairs:
+                    # Check minimum straight-line distance
+                    target_attrs = self.graph.nodes[target]
+                    dist = self._haversine_distance_m(
+                        attrs["y"], attrs["x"],
+                        target_attrs["y"], target_attrs["x"],
+                    )
+                    if dist < min_distance_m:
+                        skipped_too_close += 1
+                        continue
+
                     route_queue.append({
                         "origin_node": node,
                         "dest_node": target,
                         "origin_coords": (attrs["y"], attrs["x"]),
                         "dest_coords": (
-                            self.graph.nodes[target]["y"],
-                            self.graph.nodes[target]["x"]
+                            target_attrs["y"],
+                            target_attrs["x"],
                         ),
                     })
                     connected_pairs.add(pair_id)
 
             if i % 100 == 0 and i > 0:
                 logger.info(f"Processed {i}/{len(intersections)} intersections, {len(route_queue)} routes so far...")
+
+        if skipped_too_close:
+            logger.info(f"Skipped {skipped_too_close} pairs closer than {min_distance_m}m (too short for reliable speed data)")
 
         return route_queue
 
